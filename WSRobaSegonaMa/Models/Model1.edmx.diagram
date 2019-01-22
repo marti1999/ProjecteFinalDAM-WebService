@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a260fd9bce7b4c66a8e839fe59d110ad" Name="Diagram1" ZoomLevel="111">
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Administrador" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Announcement" Width="1.5" PointX="13" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Cloth" Width="1.5" PointX="10.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.ClothesRequest" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Color" Width="1.5" PointX="12.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Donor" Width="1.5" PointX="3" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Gender" Width="1.5" PointX="12.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Language" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.MathOperation" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.MaxClaim" Width="1.5" PointX="3.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Name" Width="1.5" PointX="3" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Order" Width="1.5" PointX="8.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.OrderLine" Width="1.5" PointX="15.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Recipient" Width="1.5" PointX="10.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Requestor" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.RewardInfoLang" Width="1.5" PointX="7.5" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Reward" Width="1.5" PointX="5.25" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Size" Width="1.5" PointX="12.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Status" Width="1.5" PointX="3.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Type" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Warehouse" Width="1.5" PointX="8.25" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_LanguageAdministrador" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_WarehouseAdministrador" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_RecipientAnnouncement" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_ClothesClothesRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_ClothesOrderLines" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_ClothesType" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_ColorClothes" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_GenderClothes" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_SizeClothes" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_WarehouseClothes" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_RequestorClothesRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_LanguageDonor" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_LanguageNames" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_LanguageRequestor" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_rewardInfoLangLanguage" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_MaxClaimsRequestor" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_OrderOrderLines" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_RequestorOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_StatusRequestor" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.FK_rewardInfoLangRewards" ManuallyRouted="false" />
+        <AssociationConnector Association="RobaSegonaMaModel.DonorRewards" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
