@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WSRobaSegonaMa.Controllers;
+
 
 namespace WSRobaSegonaMa.Models
 {
@@ -72,14 +74,20 @@ namespace WSRobaSegonaMa.Models
             }
         }
 
-        public static void DeleteDonor(int id)
+        public static void DeleteDonor(String id)
         {
-            Donor c = dataContext.Donors.Where(x => x.Id == id).SingleOrDefault();
+
+            if (Utils.validInt(id))
+            {
+
+            }
+            Donor c = dataContext.Donors.Where(x => x.Id == id || x.dni.Equals(id)).SingleOrDefault();
             if (c != null)
             {
                 dataContext.Donors.Remove(c);
                 dataContext.SaveChanges();
             }
         }
+
     }
 }

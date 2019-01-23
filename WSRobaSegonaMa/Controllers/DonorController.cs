@@ -11,62 +11,62 @@ namespace WSRobaSegonaMa.Controllers
 {
     public class DonorController : ApiController
     {
-        // GET: api/emails
-        [Route("api/emails")]
+        // GET: api/donors
+        [Route("api/donors")]
         public HttpResponseMessage Get()
         {
-            var contactes = DonorRepository.GetAllDonors();
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, contactes);
+            var donors = DonorRepository.GetAllDonors();
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
             return response;
         }
-        // GET: api/emailsTot
-        [Route("api/emailsTot")]
+        // GET: api/donorsTot
+        [Route("api/donorsTot")]
         public HttpResponseMessage GetTot()
         {
-            var telefons = DonorRepository.GetAllDonors();
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, telefons);
+            var donors = DonorRepository.GetAllDonors();
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
             return response;
         }
-
-        [Route("api/emailC/{dni:alpha}")]
+        //GET: api/donor/65432343T
+        [Route("api/donor/{dni:alpha}")]
         public HttpResponseMessage GetEmailByName(string dni)
         {
-            var telefons = DonorRepository.SearchDonorsByDni(dni);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, telefons);
+            var donors = DonorRepository.SearchDonorsByDni(dni);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
             return response;
         }
 
-        // GET: api/email/5
-        [Route("api/email/{id?}")]
+        // GET: api/donor/5
+        [Route("api/donor/{id?}")]
         public HttpResponseMessage Get(int id)
         {
-            var telefon = DonorRepository.GetDonor(id);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, telefon);
+            var donors = DonorRepository.GetDonor(id);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
             return response;
         }
 
-        // PUT: api/email/5
-        [Route("api/email/{id?}")]
+        // PUT: api/donor/5
+        [Route("api/donor/{id?}")]
         public HttpResponseMessage Put(int id, [FromBody] Donor val)
         {
-            var telefon = DonorRepository.UpdateDonor(id, val);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, telefon);
+            var donors = DonorRepository.UpdateDonor(id, val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
             return response;
         }
 
-        // POST: api/email
-        [Route("api/email")]
+        // POST: api/donor
+        [Route("api/donor")]
         public HttpResponseMessage Post([FromBody] Donor val)
         {
-            var email = DonorRepository.InsertDonor(val);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, email);
+            var donors = DonorRepository.InsertDonor(val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
             return response;
         }
 
 
-        // DELETE: api/email/5
-        [Route("api/email/{id?}")]
-        public HttpResponseMessage Delete(int id)
+        // DELETE: api/donor/5
+        [Route("api/donor/{id?}")]
+        public HttpResponseMessage Delete(String id)
         {
             DonorRepository.DeleteDonor(id);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, "S'ha esborrat correctament");
