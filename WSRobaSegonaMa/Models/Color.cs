@@ -14,12 +14,18 @@ namespace WSRobaSegonaMa.Models
     
     public partial class Color
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Color()
+        {
+            this.Clothes = new HashSet<Cloth>();
+        }
+    
         public int Id { get; set; }
         public string codiColor { get; set; }
         public string name { get; set; }
         public bool active { get; set; }
-        public int Clothes_Id { get; set; }
     
-        public virtual Cloth Cloth { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cloth> Clothes { get; set; }
     }
 }

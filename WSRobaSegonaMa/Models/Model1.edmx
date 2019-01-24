@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="RobaSegonaMaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Administrador">
+        <EntityType Name="Administrator">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -41,6 +41,9 @@
           <Property Name="ClothesRequest_Id" Type="int" Nullable="false" />
           <Property Name="Warehouse_Id" Type="int" Nullable="false" />
           <Property Name="Type_Id" Type="int" Nullable="false" />
+          <Property Name="Size_Id" Type="int" Nullable="false" />
+          <Property Name="Color_Id" Type="int" Nullable="false" />
+          <Property Name="Gender_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ClothesRequest">
           <Key>
@@ -59,7 +62,6 @@
           <Property Name="codiColor" Type="nvarchar(max)" Nullable="false" />
           <Property Name="name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="active" Type="bit" Nullable="false" />
-          <Property Name="Clothes_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Donor">
           <Key>
@@ -96,7 +98,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="gender" Type="nvarchar(max)" Nullable="false" />
           <Property Name="active" Type="bit" Nullable="false" />
-          <Property Name="Clothes_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Language">
           <Key>
@@ -206,7 +207,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="size" Type="nvarchar(max)" Nullable="false" />
           <Property Name="active" Type="bit" Nullable="false" />
-          <Property Name="Clothes_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -259,27 +259,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClothesType">
-          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+        <Association Name="FK_ColorClothes">
+          <End Role="Color" Type="Self.Color" Multiplicity="1" />
           <End Role="Clothes" Type="Self.Clothes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Type">
+            <Principal Role="Color">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Clothes">
-              <PropertyRef Name="Type_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ColorClothes">
-          <End Role="Clothes" Type="Self.Clothes" Multiplicity="1" />
-          <End Role="Color" Type="Self.Color" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clothes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Color">
-              <PropertyRef Name="Clothes_Id" />
+              <PropertyRef Name="Color_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -308,25 +296,25 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_GenderClothes">
-          <End Role="Clothes" Type="Self.Clothes" Multiplicity="1" />
-          <End Role="Gender" Type="Self.Gender" Multiplicity="*" />
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Clothes" Type="Self.Clothes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Clothes">
+            <Principal Role="Gender">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Gender">
-              <PropertyRef Name="Clothes_Id" />
+            <Dependent Role="Clothes">
+              <PropertyRef Name="Gender_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_LanguageAdministrador">
           <End Role="Language" Type="Self.Language" Multiplicity="1" />
-          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Language">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Administrador">
+            <Dependent Role="Administrator">
               <PropertyRef Name="Language_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -452,14 +440,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SizeClothes">
-          <End Role="Clothes" Type="Self.Clothes" Multiplicity="1" />
-          <End Role="Size" Type="Self.Size" Multiplicity="*" />
+          <End Role="Size" Type="Self.Size" Multiplicity="1" />
+          <End Role="Clothes" Type="Self.Clothes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Clothes">
+            <Principal Role="Size">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Size">
-              <PropertyRef Name="Clothes_Id" />
+            <Dependent Role="Clothes">
+              <PropertyRef Name="Size_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -475,14 +463,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TypeClothes">
+          <End Role="Type" Type="Self.Type" Multiplicity="1" />
+          <End Role="Clothes" Type="Self.Clothes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Clothes">
+              <PropertyRef Name="Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_WarehouseAdministrador">
           <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
-          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Warehouse">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Administrador">
+            <Dependent Role="Administrator">
               <PropertyRef Name="Warehouse_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -500,7 +500,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RobaSegonaMaModelStoreContainer">
-          <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Announcement" EntityType="Self.Announcement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Clothes" EntityType="Self.Clothes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClothesRequest" EntityType="Self.ClothesRequest" Schema="dbo" store:Type="Tables" />
@@ -530,13 +530,9 @@
             <End Role="Clothes" EntitySet="Clothes" />
             <End Role="OrderLines" EntitySet="OrderLines" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClothesType" Association="Self.FK_ClothesType">
-            <End Role="Type" EntitySet="Type" />
-            <End Role="Clothes" EntitySet="Clothes" />
-          </AssociationSet>
           <AssociationSet Name="FK_ColorClothes" Association="Self.FK_ColorClothes">
-            <End Role="Clothes" EntitySet="Clothes" />
             <End Role="Color" EntitySet="Color" />
+            <End Role="Clothes" EntitySet="Clothes" />
           </AssociationSet>
           <AssociationSet Name="FK_DonorRewards_Donor" Association="Self.FK_DonorRewards_Donor">
             <End Role="Donor" EntitySet="Donor" />
@@ -547,12 +543,12 @@
             <End Role="DonorRewards" EntitySet="DonorRewards" />
           </AssociationSet>
           <AssociationSet Name="FK_GenderClothes" Association="Self.FK_GenderClothes">
-            <End Role="Clothes" EntitySet="Clothes" />
             <End Role="Gender" EntitySet="Gender" />
+            <End Role="Clothes" EntitySet="Clothes" />
           </AssociationSet>
           <AssociationSet Name="FK_LanguageAdministrador" Association="Self.FK_LanguageAdministrador">
             <End Role="Language" EntitySet="Language" />
-            <End Role="Administrador" EntitySet="Administrador" />
+            <End Role="Administrator" EntitySet="Administrator" />
           </AssociationSet>
           <AssociationSet Name="FK_LanguageDonor" Association="Self.FK_LanguageDonor">
             <End Role="Language" EntitySet="Language" />
@@ -595,16 +591,20 @@
             <End Role="RewardInfoLang" EntitySet="RewardInfoLang" />
           </AssociationSet>
           <AssociationSet Name="FK_SizeClothes" Association="Self.FK_SizeClothes">
-            <End Role="Clothes" EntitySet="Clothes" />
             <End Role="Size" EntitySet="Size" />
+            <End Role="Clothes" EntitySet="Clothes" />
           </AssociationSet>
           <AssociationSet Name="FK_StatusRequestor" Association="Self.FK_StatusRequestor">
             <End Role="Status" EntitySet="Status" />
             <End Role="Requestor" EntitySet="Requestor" />
           </AssociationSet>
+          <AssociationSet Name="FK_TypeClothes" Association="Self.FK_TypeClothes">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Clothes" EntitySet="Clothes" />
+          </AssociationSet>
           <AssociationSet Name="FK_WarehouseAdministrador" Association="Self.FK_WarehouseAdministrador">
             <End Role="Warehouse" EntitySet="Warehouse" />
-            <End Role="Administrador" EntitySet="Administrador" />
+            <End Role="Administrator" EntitySet="Administrator" />
           </AssociationSet>
           <AssociationSet Name="FK_WarehouseClothes" Association="Self.FK_WarehouseClothes">
             <End Role="Warehouse" EntitySet="Warehouse" />
@@ -616,7 +616,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RobaSegonaMaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Administrador">
+        <EntityType Name="Administrator">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -631,8 +631,8 @@
           <Property Name="codiEmpleat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Language_Id" Type="Int32" Nullable="false" />
           <Property Name="Warehouse_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Language" Relationship="Self.FK_LanguageAdministrador" FromRole="Administrador" ToRole="Language" />
-          <NavigationProperty Name="Warehouse" Relationship="Self.FK_WarehouseAdministrador" FromRole="Administrador" ToRole="Warehouse" />
+          <NavigationProperty Name="Language" Relationship="Self.FK_LanguageAdministrador" FromRole="Administrator" ToRole="Language" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.FK_WarehouseAdministrador" FromRole="Administrator" ToRole="Warehouse" />
         </EntityType>
         <EntityType Name="Announcement">
           <Key>
@@ -655,12 +655,15 @@
           <Property Name="ClothesRequest_Id" Type="Int32" Nullable="false" />
           <Property Name="Warehouse_Id" Type="Int32" Nullable="false" />
           <Property Name="Type_Id" Type="Int32" Nullable="false" />
+          <Property Name="Size_Id" Type="Int32" Nullable="false" />
+          <Property Name="Color_Id" Type="Int32" Nullable="false" />
+          <Property Name="Gender_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ClothesRequest" Relationship="Self.FK_ClothesClothesRequest" FromRole="Clothes" ToRole="ClothesRequest" />
           <NavigationProperty Name="OrderLines" Relationship="Self.FK_ClothesOrderLines" FromRole="Clothes" ToRole="OrderLines" />
-          <NavigationProperty Name="Type" Relationship="Self.FK_ClothesType" FromRole="Clothes" ToRole="Type" />
-          <NavigationProperty Name="Colors" Relationship="Self.FK_ColorClothes" FromRole="Clothes" ToRole="Color" />
-          <NavigationProperty Name="Genders" Relationship="Self.FK_GenderClothes" FromRole="Clothes" ToRole="Gender" />
-          <NavigationProperty Name="Sizes" Relationship="Self.FK_SizeClothes" FromRole="Clothes" ToRole="Size" />
+          <NavigationProperty Name="Color" Relationship="Self.FK_ColorClothes" FromRole="Clothes" ToRole="Color" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_GenderClothes" FromRole="Clothes" ToRole="Gender" />
+          <NavigationProperty Name="Size" Relationship="Self.FK_SizeClothes" FromRole="Clothes" ToRole="Size" />
+          <NavigationProperty Name="Type" Relationship="Self.FK_TypeClothes" FromRole="Clothes" ToRole="Type" />
           <NavigationProperty Name="Warehouse" Relationship="Self.FK_WarehouseClothes" FromRole="Clothes" ToRole="Warehouse" />
         </EntityType>
         <EntityType Name="ClothesRequest">
@@ -682,8 +685,7 @@
           <Property Name="codiColor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
-          <Property Name="Clothes_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cloth" Relationship="Self.FK_ColorClothes" FromRole="Color" ToRole="Clothes" />
+          <NavigationProperty Name="Clothes" Relationship="Self.FK_ColorClothes" FromRole="Color" ToRole="Clothes" />
         </EntityType>
         <EntityType Name="Donor">
           <Key>
@@ -714,8 +716,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="gender1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
-          <Property Name="Clothes_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cloth" Relationship="Self.FK_GenderClothes" FromRole="Gender" ToRole="Clothes" />
+          <NavigationProperty Name="Clothes" Relationship="Self.FK_GenderClothes" FromRole="Gender" ToRole="Clothes" />
         </EntityType>
         <EntityType Name="Language">
           <Key>
@@ -724,7 +725,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Administradors" Relationship="Self.FK_LanguageAdministrador" FromRole="Language" ToRole="Administrador" />
+          <NavigationProperty Name="Administrators" Relationship="Self.FK_LanguageAdministrador" FromRole="Language" ToRole="Administrator" />
           <NavigationProperty Name="Donors" Relationship="Self.FK_LanguageDonor" FromRole="Language" ToRole="Donor" />
           <NavigationProperty Name="Names" Relationship="Self.FK_LanguageNames" FromRole="Language" ToRole="Names" />
           <NavigationProperty Name="Requestors" Relationship="Self.FK_LanguageRequestor" FromRole="Language" ToRole="Requestor" />
@@ -846,8 +847,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="size1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
-          <Property Name="Clothes_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cloth" Relationship="Self.FK_SizeClothes" FromRole="Size" ToRole="Clothes" />
+          <NavigationProperty Name="Clothes" Relationship="Self.FK_SizeClothes" FromRole="Size" ToRole="Clothes" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -865,7 +865,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="type1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Clothes" Relationship="Self.FK_ClothesType" FromRole="Type" ToRole="Clothes" />
+          <NavigationProperty Name="Clothes" Relationship="Self.FK_TypeClothes" FromRole="Type" ToRole="Clothes" />
         </EntityType>
         <EntityType Name="Warehouse">
           <Key>
@@ -877,29 +877,29 @@
           <Property Name="city" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="postalCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Administradors" Relationship="Self.FK_WarehouseAdministrador" FromRole="Warehouse" ToRole="Administrador" />
+          <NavigationProperty Name="Administrators" Relationship="Self.FK_WarehouseAdministrador" FromRole="Warehouse" ToRole="Administrator" />
           <NavigationProperty Name="Clothes" Relationship="Self.FK_WarehouseClothes" FromRole="Warehouse" ToRole="Clothes" />
         </EntityType>
         <Association Name="FK_LanguageAdministrador">
           <End Role="Language" Type="Self.Language" Multiplicity="1" />
-          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Language">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Administrador">
+            <Dependent Role="Administrator">
               <PropertyRef Name="Language_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_WarehouseAdministrador">
           <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
-          <End Role="Administrador" Type="Self.Administrador" Multiplicity="*" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Warehouse">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Administrador">
+            <Dependent Role="Administrator">
               <PropertyRef Name="Warehouse_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -940,7 +940,43 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClothesType">
+        <Association Name="FK_ColorClothes">
+          <End Role="Color" Type="Self.Color" Multiplicity="1" />
+          <End Role="Clothes" Type="Self.Cloth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Color">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Clothes">
+              <PropertyRef Name="Color_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GenderClothes">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Clothes" Type="Self.Cloth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Clothes">
+              <PropertyRef Name="Gender_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SizeClothes">
+          <End Role="Size" Type="Self.Size" Multiplicity="1" />
+          <End Role="Clothes" Type="Self.Cloth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Size">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Clothes">
+              <PropertyRef Name="Size_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TypeClothes">
           <End Role="Type" Type="Self.Type" Multiplicity="1" />
           <End Role="Clothes" Type="Self.Cloth" Multiplicity="*" />
           <ReferentialConstraint>
@@ -949,42 +985,6 @@
             </Principal>
             <Dependent Role="Clothes">
               <PropertyRef Name="Type_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ColorClothes">
-          <End Role="Clothes" Type="Self.Cloth" Multiplicity="1" />
-          <End Role="Color" Type="Self.Color" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clothes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Color">
-              <PropertyRef Name="Clothes_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_GenderClothes">
-          <End Role="Clothes" Type="Self.Cloth" Multiplicity="1" />
-          <End Role="Gender" Type="Self.Gender" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clothes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Gender">
-              <PropertyRef Name="Clothes_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SizeClothes">
-          <End Role="Clothes" Type="Self.Cloth" Multiplicity="1" />
-          <End Role="Size" Type="Self.Size" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Clothes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Size">
-              <PropertyRef Name="Clothes_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1125,7 +1125,7 @@
           <End Role="Rewards" Type="Self.Reward" Multiplicity="*" />
         </Association>
         <EntityContainer Name="RobaSegonaMaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Administradors" EntityType="Self.Administrador" />
+          <EntitySet Name="Administrators" EntityType="Self.Administrator" />
           <EntitySet Name="Announcements" EntityType="Self.Announcement" />
           <EntitySet Name="Clothes" EntityType="Self.Cloth" />
           <EntitySet Name="ClothesRequests" EntityType="Self.ClothesRequest" />
@@ -1148,11 +1148,11 @@
           <EntitySet Name="Warehouses" EntityType="Self.Warehouse" />
           <AssociationSet Name="FK_LanguageAdministrador" Association="Self.FK_LanguageAdministrador">
             <End Role="Language" EntitySet="Languages" />
-            <End Role="Administrador" EntitySet="Administradors" />
+            <End Role="Administrator" EntitySet="Administrators" />
           </AssociationSet>
           <AssociationSet Name="FK_WarehouseAdministrador" Association="Self.FK_WarehouseAdministrador">
             <End Role="Warehouse" EntitySet="Warehouses" />
-            <End Role="Administrador" EntitySet="Administradors" />
+            <End Role="Administrator" EntitySet="Administrators" />
           </AssociationSet>
           <AssociationSet Name="FK_RecipientAnnouncement" Association="Self.FK_RecipientAnnouncement">
             <End Role="Recipient" EntitySet="Recipients" />
@@ -1166,21 +1166,21 @@
             <End Role="Clothes" EntitySet="Clothes" />
             <End Role="OrderLines" EntitySet="OrderLines" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClothesType" Association="Self.FK_ClothesType">
-            <End Role="Type" EntitySet="Types" />
-            <End Role="Clothes" EntitySet="Clothes" />
-          </AssociationSet>
           <AssociationSet Name="FK_ColorClothes" Association="Self.FK_ColorClothes">
-            <End Role="Clothes" EntitySet="Clothes" />
             <End Role="Color" EntitySet="Colors" />
+            <End Role="Clothes" EntitySet="Clothes" />
           </AssociationSet>
           <AssociationSet Name="FK_GenderClothes" Association="Self.FK_GenderClothes">
-            <End Role="Clothes" EntitySet="Clothes" />
             <End Role="Gender" EntitySet="Genders" />
+            <End Role="Clothes" EntitySet="Clothes" />
           </AssociationSet>
           <AssociationSet Name="FK_SizeClothes" Association="Self.FK_SizeClothes">
-            <End Role="Clothes" EntitySet="Clothes" />
             <End Role="Size" EntitySet="Sizes" />
+            <End Role="Clothes" EntitySet="Clothes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TypeClothes" Association="Self.FK_TypeClothes">
+            <End Role="Type" EntitySet="Types" />
+            <End Role="Clothes" EntitySet="Clothes" />
           </AssociationSet>
           <AssociationSet Name="FK_WarehouseClothes" Association="Self.FK_WarehouseClothes">
             <End Role="Warehouse" EntitySet="Warehouses" />
@@ -1237,9 +1237,9 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RobaSegonaMaModelStoreContainer" CdmEntityContainer="RobaSegonaMaEntities">
-          <EntitySetMapping Name="Administradors">
-            <EntityTypeMapping TypeName="RobaSegonaMaModel.Administrador">
-              <MappingFragment StoreEntitySet="Administrador">
+          <EntitySetMapping Name="Administrators">
+            <EntityTypeMapping TypeName="RobaSegonaMaModel.Administrator">
+              <MappingFragment StoreEntitySet="Administrator">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -1274,6 +1274,9 @@
                 <ScalarProperty Name="ClothesRequest_Id" ColumnName="ClothesRequest_Id" />
                 <ScalarProperty Name="Warehouse_Id" ColumnName="Warehouse_Id" />
                 <ScalarProperty Name="Type_Id" ColumnName="Type_Id" />
+                <ScalarProperty Name="Size_Id" ColumnName="Size_Id" />
+                <ScalarProperty Name="Color_Id" ColumnName="Color_Id" />
+                <ScalarProperty Name="Gender_Id" ColumnName="Gender_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1294,7 +1297,6 @@
                 <ScalarProperty Name="codiColor" ColumnName="codiColor" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="Clothes_Id" ColumnName="Clothes_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1325,7 +1327,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="gender1" ColumnName="gender" />
                 <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="Clothes_Id" ColumnName="Clothes_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1446,7 +1447,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="size1" ColumnName="size" />
                 <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="Clothes_Id" ColumnName="Clothes_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

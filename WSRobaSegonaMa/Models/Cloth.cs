@@ -18,9 +18,6 @@ namespace WSRobaSegonaMa.Models
         public Cloth()
         {
             this.OrderLines = new HashSet<OrderLine>();
-            this.Colors = new HashSet<Color>();
-            this.Genders = new HashSet<Gender>();
-            this.Sizes = new HashSet<Size>();
         }
     
         public int Id { get; set; }
@@ -29,17 +26,17 @@ namespace WSRobaSegonaMa.Models
         public int ClothesRequest_Id { get; set; }
         public int Warehouse_Id { get; set; }
         public int Type_Id { get; set; }
+        public int Size_Id { get; set; }
+        public int Color_Id { get; set; }
+        public int Gender_Id { get; set; }
     
         public virtual ClothesRequest ClothesRequest { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderLine> OrderLines { get; set; }
+        public virtual Color Color { get; set; }
+        public virtual Gender Gender { get; set; }
+        public virtual Size Size { get; set; }
         public virtual Type Type { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Color> Colors { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Gender> Genders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Size> Sizes { get; set; }
         public virtual Warehouse Warehouse { get; set; }
     }
 }

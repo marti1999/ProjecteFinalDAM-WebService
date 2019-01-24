@@ -9,7 +9,7 @@ using WSRobaSegonaMa.Models;
 
 namespace WSRobaSegonaMa.Controllers
 {
-    public class DonorController : ApiController
+    public class AdminController : ApiController
     {
         // GET: api/donors
         [Route("api/donors")]

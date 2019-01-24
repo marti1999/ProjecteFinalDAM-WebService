@@ -12,7 +12,7 @@ namespace WSRobaSegonaMa.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Administrador
+    public partial class Administrator
     {
         public int Id { get; set; }
         public string email { get; set; }

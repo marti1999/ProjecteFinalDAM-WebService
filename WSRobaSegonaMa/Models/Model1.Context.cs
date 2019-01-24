@@ -25,7 +25,7 @@ namespace WSRobaSegonaMa.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Administrador> Administradors { get; set; }
+        public virtual DbSet<Administrator> Administrators { get; set; }
         public virtual DbSet<Announcement> Announcements { get; set; }
         public virtual DbSet<Cloth> Clothes { get; set; }
         public virtual DbSet<ClothesRequest> ClothesRequests { get; set; }

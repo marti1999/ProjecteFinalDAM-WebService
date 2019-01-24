@@ -7,35 +7,35 @@ using WSRobaSegonaMa.Controllers;
 
 namespace WSRobaSegonaMa.Models
 {
-    public class DonorRepository
+    public class AdminRepository
     {
 
         private static RobaSegonaMaEntities dataContext = new RobaSegonaMaEntities();
 
-        public static List<Donor> GetAllDonors()
+        public static List<Administrator> GetAllAdministrators()
         {
-            List<Donor> lc = dataContext.Donors.ToList();
+            List<Administrator> lc = dataContext.Administrators.ToList();
             return lc;
         }
 
-        public static Donor GetDonor(int donorID)
+        public static Administrator GetAdministrator(int donorID)
         {
-            Donor c = dataContext.Donors.Where(x => x.Id == donorID).SingleOrDefault();
+            Administrator c = dataContext.Administrators.Where(x => x.Id == donorID).SingleOrDefault();
             return c;
         }
 
-        public static List<Donor> SearchDonorsByDni(string donorDni)
+        public static List<Administrator> SearchAdministratorsByDni(string donorDni)
         {
-            List<Donor> lc = dataContext.Donors
+            List<Administrator> lc = dataContext.Administrators
                 .Where(x => x.dni.Contains(donorDni)).ToList();
             return lc;
         }
 
-        public static Donor InsertDonor(Donor c)
+        public static Administrator InsertAdministrator(Donor c)
         {
             try
             {
-                dataContext.Donors.Add(c);
+                dataContext.Administrators.Add(c);
                 dataContext.SaveChanges();
                 return GetDonor(c.Id);
             }
@@ -45,7 +45,7 @@ namespace WSRobaSegonaMa.Models
             }
         }
 
-        public static Donor UpdateDonor(int id, Donor c)
+        public static Donor UpdateAdministrator(int id, Donor c)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace WSRobaSegonaMa.Models
                 if (c.dni != null) c0.dni = c.dni;
 
                 dataContext.SaveChanges();
-                return GetDonor(id);
+                return GetAdministrator(id);
             }
             catch (Exception e)
             {
@@ -74,7 +74,7 @@ namespace WSRobaSegonaMa.Models
             }
         }
 
-        public static void DeleteDonor(String id)
+        public static void DeleteAdministrator(String id)
         {
             Donor c;
             if (Utils.validInt(id))

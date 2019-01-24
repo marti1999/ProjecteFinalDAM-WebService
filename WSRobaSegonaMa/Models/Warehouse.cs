@@ -17,7 +17,7 @@ namespace WSRobaSegonaMa.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Warehouse()
         {
-            this.Administradors = new HashSet<Administrador>();
+            this.Administrators = new HashSet<Administrator>();
             this.Clothes = new HashSet<Cloth>();
         }
     
@@ -29,7 +29,7 @@ namespace WSRobaSegonaMa.Models
         public string name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Administrador> Administradors { get; set; }
+        public virtual ICollection<Administrator> Administrators { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cloth> Clothes { get; set; }
     }
