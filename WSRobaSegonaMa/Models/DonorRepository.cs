@@ -80,7 +80,7 @@ namespace WSRobaSegonaMa.Models
             if (Utils.validInt(id))
             {
                 int idInt = int.Parse(id);
-                c = dataContext.Donors.Where(x => x.Id == id || x.dni.Equals(id)).SingleOrDefault();
+                c = dataContext.Donors.Where(x => x.Id == idInt || x.dni.Equals(id)).SingleOrDefault();
             }
             else
             {

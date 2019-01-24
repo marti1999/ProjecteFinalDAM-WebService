@@ -27,17 +27,17 @@ namespace WSRobaSegonaMa.Models
         public static List<Administrator> SearchAdministratorsByDni(string donorDni)
         {
             List<Administrator> lc = dataContext.Administrators
-                .Where(x => x.dni.Contains(donorDni)).ToList();
+                .Where(x => x.codiEmpleat.Contains(donorDni)).ToList();
             return lc;
         }
 
-        public static Administrator InsertAdministrator(Donor c)
+        public static Administrator InsertAdministrator(Administrator c)
         {
             try
             {
                 dataContext.Administrators.Add(c);
                 dataContext.SaveChanges();
-                return GetDonor(c.Id);
+                return GetAdministrator(c.Id);
             }
             catch (Exception e)
             {
@@ -45,25 +45,21 @@ namespace WSRobaSegonaMa.Models
             }
         }
 
-        public static Donor UpdateAdministrator(int id, Donor c)
+        public static Administrator UpdateAdministrator(int id, Administrator c)
         {
             try
             {
-                Donor c0 = dataContext.Donors.Where(x => x.Id == id).SingleOrDefault();
+                Administrator c0 = dataContext.Administrators.Where(x => x.Id == id).SingleOrDefault();
+                if (c.email != null) c0.email = c.email;
                 if (c.name != null) c0.name = c.name;
                 if (c.lastName != null) c0.lastName = c.lastName;
-                if (c.birthDate != null) c0.birthDate = c.birthDate;
-                if (c.gender != null) c0.gender = c.gender;
                 if (c.password != null) c0.password = c.password;
-                if (c.email != null) c0.email = c.email;
-                if (c.securityAnswer != null) c0.securityAnswer = c.securityAnswer;
-                if (c.securityQuestion != null) c0.securityQuestion = c.securityQuestion;
                 if (c.dateCreated != null) c0.dateCreated = c.dateCreated;
+                if (c.isSuper != null) c0.isSuper = c.isSuper;
                 if (c.active != null) c0.active = c.active;
-                if (c.picturePath != null) c0.picturePath = c.picturePath;
-                if (c.ammountGiven != null) c0.ammountGiven = c.ammountGiven;
+                if (c.codiEmpleat != null) c0.codiEmpleat = c.codiEmpleat;
                 if (c.Language != null) c0.Language = c.Language;
-                if (c.dni != null) c0.dni = c.dni;
+                if (c.Warehouse != null) c0.Warehouse = c.Warehouse;
 
                 dataContext.SaveChanges();
                 return GetAdministrator(id);
@@ -76,20 +72,20 @@ namespace WSRobaSegonaMa.Models
 
         public static void DeleteAdministrator(String id)
         {
-            Donor c;
+            Administrator c;
             if (Utils.validInt(id))
             {
                 int idInt = int.Parse(id);
-                c = dataContext.Donors.Where(x => x.Id == id || x.dni.Equals(id)).SingleOrDefault();
+                c = dataContext.Administrators.Where(x => x.Id == idInt || x.codiEmpleat.Equals(id)).SingleOrDefault();
             }
             else
             {
-                c = dataContext.Donors.Where(x => x.dni.Equals(id)).SingleOrDefault();
+                c = dataContext.Administrators.Where(x => x.codiEmpleat.Equals(id)).SingleOrDefault();
             }
 
             if (c != null)
             {
-                dataContext.Donors.Remove(c);
+                dataContext.Administrators.Remove(c);
                 dataContext.SaveChanges();
             }
         }
