@@ -94,5 +94,17 @@ namespace WSRobaSegonaMa.Models
             }
         }
 
+        public static bool CanLogin(Donor a)
+        {
+            List<Donor> lc = GetAllDonors();
+
+            Donor donor = lc.Where(x => x.password == a.password && x.email == a.email).FirstOrDefault();
+            if (donor != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
     }
 }

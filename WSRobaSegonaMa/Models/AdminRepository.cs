@@ -24,10 +24,10 @@ namespace WSRobaSegonaMa.Models
             return c;
         }
 
-        public static List<Administrator> SearchAdministratorsByDni(string donorDni)
+        public static List<Administrator> SearchAdministratorsByCode(string donorDni)
         {
             List<Administrator> lc = dataContext.Administrators
-                .Where(x => x.codiEmpleat.Contains(donorDni)).ToList();
+                .Where(x => x.workerCode.Contains(donorDni)).ToList();
             return lc;
         }
 
@@ -57,7 +57,7 @@ namespace WSRobaSegonaMa.Models
                 if (c.dateCreated != null) c0.dateCreated = c.dateCreated;
                 if (c.isSuper != null) c0.isSuper = c.isSuper;
                 if (c.active != null) c0.active = c.active;
-                if (c.codiEmpleat != null) c0.codiEmpleat = c.codiEmpleat;
+                if (c.workerCode != null) c0.workerCode = c.workerCode;
                 if (c.Language != null) c0.Language = c.Language;
                 if (c.Warehouse != null) c0.Warehouse = c.Warehouse;
 
@@ -76,11 +76,11 @@ namespace WSRobaSegonaMa.Models
             if (Utils.validInt(id))
             {
                 int idInt = int.Parse(id);
-                c = dataContext.Administrators.Where(x => x.Id == idInt || x.codiEmpleat.Equals(id)).SingleOrDefault();
+                c = dataContext.Administrators.Where(x => x.Id == idInt || x.workerCode.Equals(id)).SingleOrDefault();
             }
             else
             {
-                c = dataContext.Administrators.Where(x => x.codiEmpleat.Equals(id)).SingleOrDefault();
+                c = dataContext.Administrators.Where(x => x.workerCode.Equals(id)).SingleOrDefault();
             }
 
             if (c != null)
@@ -88,6 +88,19 @@ namespace WSRobaSegonaMa.Models
                 dataContext.Administrators.Remove(c);
                 dataContext.SaveChanges();
             }
+        }
+
+
+        public static bool CanLogin(Administrator a)
+        {
+            List<Administrator> lc = GetAllAdministrators();
+
+            Administrator admin = lc.Where(x => x.password == a.password && x.email == a.email).FirstOrDefault();
+            if (admin != null)
+            {
+                return true;
+            }
+            return false;
         }
 
     }

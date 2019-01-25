@@ -29,7 +29,7 @@ namespace WSRobaSegonaMa.Controllers
         }
         //GET: api/donor/65432343T
         [Route("api/donor/{dni:alpha}")]
-        public HttpResponseMessage GetEmailByName(string dni)
+        public HttpResponseMessage GetDonorByName(string dni)
         {
             var donors = DonorRepository.SearchDonorsByDni(dni);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
@@ -70,6 +70,15 @@ namespace WSRobaSegonaMa.Controllers
         {
             DonorRepository.DeleteDonor(id);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            return response;
+        }
+
+        // POST: api/donor/login
+        [Route("api/donor/login")]
+        public HttpResponseMessage Login([FromBody] Donor val)
+        {
+            var canLogin = DonorRepository.CanLogin(val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, canLogin);
             return response;
         }
     }

@@ -17,7 +17,7 @@
           <Property Name="dateCreated" Type="datetime" Nullable="false" />
           <Property Name="isSuper" Type="bit" Nullable="false" />
           <Property Name="active" Type="bit" Nullable="false" />
-          <Property Name="codiEmpleat" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="workerCode" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Language_Id" Type="int" Nullable="false" />
           <Property Name="Warehouse_Id" Type="int" Nullable="false" />
         </EntityType>
@@ -628,7 +628,7 @@
           <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="isSuper" Type="Boolean" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
-          <Property Name="codiEmpleat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="workerCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Language_Id" Type="Int32" Nullable="false" />
           <Property Name="Warehouse_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Language" Relationship="Self.FK_LanguageAdministrador" FromRole="Administrator" ToRole="Language" />
@@ -1248,7 +1248,7 @@
                 <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
                 <ScalarProperty Name="isSuper" ColumnName="isSuper" />
                 <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="codiEmpleat" ColumnName="codiEmpleat" />
+                <ScalarProperty Name="workerCode" ColumnName="workerCode" />
                 <ScalarProperty Name="Language_Id" ColumnName="Language_Id" />
                 <ScalarProperty Name="Warehouse_Id" ColumnName="Warehouse_Id" />
               </MappingFragment>

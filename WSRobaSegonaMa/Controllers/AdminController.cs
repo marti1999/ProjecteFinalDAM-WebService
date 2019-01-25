@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web;
 using System.Web.Http;
 using WSRobaSegonaMa.Models;
 
@@ -11,64 +8,76 @@ namespace WSRobaSegonaMa.Controllers
 {
     public class AdminController : ApiController
     {
-        // GET: api/donors
-        [Route("api/donors")]
+
+
+        // GET: api/administrators
+        [Route("api/administrators")]
         public HttpResponseMessage Get()
         {
-            var donors = DonorRepository.GetAllDonors();
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
+            var admins = AdminRepository.GetAllAdministrators();
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, admins);
             return response;
         }
-        // GET: api/donorsTot
-        [Route("api/donorsTot")]
+
+        // GET: api/administratorsTot
+        [Route("api/administratorsTot")]
         public HttpResponseMessage GetTot()
         {
-            var donors = DonorRepository.GetAllDonors();
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
-            return response;
-        }
-        //GET: api/donor/65432343T
-        [Route("api/donor/{dni:alpha}")]
-        public HttpResponseMessage GetEmailByName(string dni)
-        {
-            var donors = DonorRepository.SearchDonorsByDni(dni);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
+            var admins = AdminRepository.GetAllAdministrators();
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, admins);
             return response;
         }
 
-        // GET: api/donor/5
-        [Route("api/donor/{id?}")]
+        //GET: api/administrator/65432343-TSAS
+        [Route("api/administrator/{code:alpha}")]
+        public HttpResponseMessage GetAdministratorByName(string code)
+        {
+            var admins = AdminRepository.SearchAdministratorsByCode(code);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, admins);
+            return response;
+        }
+
+        // GET: api/administrator/5
+        [Route("api/administrator/{id?}")]
         public HttpResponseMessage Get(int id)
         {
-            var donors = DonorRepository.GetDonor(id);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
+            var admins = AdminRepository.GetAdministrator(id);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, admins);
             return response;
         }
 
-        // PUT: api/donor/5
-        [Route("api/donor/{id?}")]
-        public HttpResponseMessage Put(int id, [FromBody] Donor val)
+        // PUT: api/administrator/5
+        [Route("api/administrator/{id?}")]
+        public HttpResponseMessage Put(int id, [FromBody] Administrator val)
         {
-            var donors = DonorRepository.UpdateDonor(id, val);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
+            var admins = AdminRepository.UpdateAdministrator(id, val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, admins);
             return response;
         }
 
-        // POST: api/donor
-        [Route("api/donor")]
-        public HttpResponseMessage Post([FromBody] Donor val)
+        // POST: api/administrator/login
+        [Route("api/administrator/login")]
+        public HttpResponseMessage Login([FromBody] Administrator val)
         {
-            var donors = DonorRepository.InsertDonor(val);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
+            var canLogin = AdminRepository.CanLogin(val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, canLogin);
             return response;
         }
 
+        // POST: api/administrator
+        [Route("api/administrator")]
+        public HttpResponseMessage Post([FromBody] Administrator val)
+        {
+            var admins = AdminRepository.InsertAdministrator(val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, admins);
+            return response;
+        }
 
-        // DELETE: api/donor/5
-        [Route("api/donor/{id?}")]
+        // DELETE: api/administrator/5
+        [Route("api/administrator/{id?}")]
         public HttpResponseMessage Delete(String id)
         {
-            DonorRepository.DeleteDonor(id);
+            AdminRepository.DeleteAdministrator(id);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
             return response;
         }
