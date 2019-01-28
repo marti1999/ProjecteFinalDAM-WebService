@@ -65,6 +65,8 @@ namespace WSRobaSegonaMa.Models
                 if (c.Language != null) c0.Language = c.Language;
                 if (c.dni != null) c0.dni = c.dni;
 
+                
+
                 dataContext.SaveChanges();
                 return GetDonor(id);
             }
