@@ -13,10 +13,10 @@ namespace WSRobaSegonaMa.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RobaSegonaMaEntities : DbContext
+    public partial class RobaSegonaMaEntities1 : DbContext
     {
-        public RobaSegonaMaEntities()
-            : base("name=RobaSegonaMaEntities")
+        public RobaSegonaMaEntities1()
+            : base("name=RobaSegonaMaEntities1")
         {
         }
     
@@ -27,6 +27,7 @@ namespace WSRobaSegonaMa.Models
     
         public virtual DbSet<Administrator> Administrators { get; set; }
         public virtual DbSet<Announcement> Announcements { get; set; }
+        public virtual DbSet<Classification> Classifications { get; set; }
         public virtual DbSet<Cloth> Clothes { get; set; }
         public virtual DbSet<ClothesRequest> ClothesRequests { get; set; }
         public virtual DbSet<Color> Colors { get; set; }
@@ -44,7 +45,6 @@ namespace WSRobaSegonaMa.Models
         public virtual DbSet<Reward> Rewards { get; set; }
         public virtual DbSet<Size> Sizes { get; set; }
         public virtual DbSet<Status> Status { get; set; }
-        public virtual DbSet<Type> Types { get; set; }
         public virtual DbSet<Warehouse> Warehouses { get; set; }
     }
 }

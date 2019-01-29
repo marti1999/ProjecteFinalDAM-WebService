@@ -17,6 +17,7 @@ namespace WSRobaSegonaMa.Models
         public int Id { get; set; }
         public int itemId { get; set; }
         public string nameInLanguage { get; set; }
+        public string itemType { get; set; }
         public int Language_Id { get; set; }
     
         public virtual Language Language { get; set; }
