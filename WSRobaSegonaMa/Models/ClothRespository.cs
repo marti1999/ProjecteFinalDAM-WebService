@@ -55,6 +55,8 @@ namespace WSRobaSegonaMa.Models
                 if (c.Size_Id != null) c2.Size_Id = c.Size_Id;
                 if (c.Type_Id != null) c2.Type_Id = c.Type_Id;
                 if (c.Warehouse_Id != null) c2.Type_Id = c.Type_Id;
+                if (c.dateCreated != null) c2.dateCreated = c.dateCreated;
+                
                 //TODO falten alguns atributs, potser
 
                 dc.SaveChanges();
@@ -65,6 +67,18 @@ namespace WSRobaSegonaMa.Models
             {
 
                 return null;
+            }
+        }
+
+        public static void deleteCloth(int id)
+        {
+            Cloth c;
+
+            c = dc.Clothes.Where(x => x.Id == id).FirstOrDefault();
+            if (c != null) { }
+            {
+                dc.Clothes.Remove(c);
+                dc.SaveChanges();
             }
         }
 
