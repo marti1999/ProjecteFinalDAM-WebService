@@ -12,16 +12,16 @@ namespace WSRobaSegonaMa.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Type
+    public partial class Classification
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Type()
+        public Classification()
         {
             this.Clothes = new HashSet<Cloth>();
         }
     
         public int Id { get; set; }
-        public string type1 { get; set; }
+        public string classificationType { get; set; }
         public bool active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

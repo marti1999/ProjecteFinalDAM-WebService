@@ -26,7 +26,7 @@ namespace WSRobaSegonaMa.Models
         public string lastName { get; set; }
         public System.DateTime birthDate { get; set; }
         public string gender { get; set; }
-        public string passwrod { get; set; }
+        public string password { get; set; }
         public string email { get; set; }
         public string securityAnswer { get; set; }
         public string securityQuestion { get; set; }
