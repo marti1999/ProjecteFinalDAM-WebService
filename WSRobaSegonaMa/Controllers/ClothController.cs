@@ -15,7 +15,7 @@ namespace WSRobaSegonaMa.Controllers
         [Route("api/clothes")]
         public HttpResponseMessage getClothes()
         {
-            var clothes = ClothRespository.GetAllCLothes();
+            var clothes = ClothRespository.GetAllClothes();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, clothes);
             return response;
         }
@@ -24,7 +24,7 @@ namespace WSRobaSegonaMa.Controllers
         [Route("api/cloth/{id?}")]
         public HttpResponseMessage getClothById(int id)
         {
-            var clothes = ClothRespository.getCLoth(id);
+            var clothes = ClothRespository.getCloth(id);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, clothes);
             return response;
         }
@@ -39,7 +39,7 @@ namespace WSRobaSegonaMa.Controllers
         }
 
         // POST: api/cloth/
-        [Route("api/donor")]
+        [Route("api/cloth")]
         public HttpResponseMessage Post([FromBody] Cloth val)
         {
             var cloth = ClothRespository.insertCloth(val);
@@ -48,7 +48,7 @@ namespace WSRobaSegonaMa.Controllers
         }
 
         // DELETE: api/cloth/5
-        [Route("api/donor/{id?}")]
+        [Route("api/cloth/{id?}")]
         public HttpResponseMessage Delete(int id)
         {
             ClothRespository.deleteCloth(id);

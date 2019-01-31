@@ -11,13 +11,13 @@ namespace WSRobaSegonaMa.Models
 
         private static RobaSegonaMaEntities dc = new RobaSegonaMaEntities();
 
-        public static List<Cloth> GetAllCLothes()
+        public static List<Cloth> GetAllClothes()
         {
             List<Cloth> lc = dc.Clothes.ToList();
             return lc;
         }
 
-        public static Cloth getCLoth(int id)
+        public static Cloth getCloth(int id)
         {
             Cloth c = dc.Clothes.Where(x => x.Id == id).FirstOrDefault();
             return c;
