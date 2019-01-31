@@ -13,10 +13,10 @@ namespace WSRobaSegonaMa.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class RobaSegonaMaEntities1 : DbContext
+    public partial class RobaSegonaMaEntities : DbContext
     {
-        public RobaSegonaMaEntities1()
-            : base("name=RobaSegonaMaEntities1")
+        public RobaSegonaMaEntities()
+            : base("name=RobaSegonaMaEntities")
         {
         }
     

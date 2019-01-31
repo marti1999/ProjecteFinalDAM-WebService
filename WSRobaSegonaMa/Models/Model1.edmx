@@ -1126,7 +1126,7 @@
           <End Role="Donor" Type="Self.Donor" Multiplicity="*" />
           <End Role="Rewards" Type="Self.Reward" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="RobaSegonaMaEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="RobaSegonaMaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrators" EntityType="Self.Administrator" />
           <EntitySet Name="Announcements" EntityType="Self.Announcement" />
           <EntitySet Name="Classifications" EntityType="Self.Classification" />
@@ -1238,7 +1238,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="RobaSegonaMaModelStoreContainer" CdmEntityContainer="RobaSegonaMaEntities1">
+        <EntityContainerMapping StorageEntityContainer="RobaSegonaMaModelStoreContainer" CdmEntityContainer="RobaSegonaMaEntities">
           <EntitySetMapping Name="Administrators">
             <EntityTypeMapping TypeName="RobaSegonaMaModel.Administrator">
               <MappingFragment StoreEntitySet="Administrator">

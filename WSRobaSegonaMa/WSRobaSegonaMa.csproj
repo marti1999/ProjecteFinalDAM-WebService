@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ClothController.cs" />
     <Compile Include="Controllers\DonorController.cs" />
+    <Compile Include="Controllers\RequestorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Utils.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Models\Donor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RequestorRepository.cs" />
     <Compile Include="Models\DonorRepository.cs" />
     <Compile Include="Models\Gender.cs">
       <DependentUpon>Model1.tt</DependentUpon>
