@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RobaSegonaMaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="RobaSegonaMaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrator">
           <Key>
             <PropertyRef Name="Id" />
@@ -29,6 +29,7 @@
           <Property Name="title" Type="nvarchar(max)" Nullable="false" />
           <Property Name="message" Type="nvarchar(max)" Nullable="false" />
           <Property Name="dateCreated" Type="datetime" Nullable="false" />
+          <Property Name="language" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Recipient_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Classification">
@@ -163,7 +164,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="query" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="query" Type="nvarchar(max)" />
           <Property Name="dateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Requestor">
@@ -612,8 +613,7 @@
             <End Role="Clothes" EntitySet="Clothes" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RobaSegonaMaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -645,6 +645,7 @@
           <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Recipient_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Recipient" Relationship="Self.FK_RecipientAnnouncement" FromRole="Announcement" ToRole="Recipient" />
+          <Property Name="language" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Classification">
           <Key>
@@ -795,7 +796,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="query" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="query" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Announcements" Relationship="Self.FK_RecipientAnnouncement" FromRole="Recipient" ToRole="Announcement" />
         </EntityType>
@@ -1259,6 +1260,7 @@
           <EntitySetMapping Name="Announcements">
             <EntityTypeMapping TypeName="RobaSegonaMaModel.Announcement">
               <MappingFragment StoreEntitySet="Announcement">
+                <ScalarProperty Name="language" ColumnName="language" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="message" ColumnName="message" />
