@@ -11,7 +11,7 @@ namespace WSRobaSegonaMa.Controllers
 {
     public class AnnouncementController : ApiController
     {
-        //GET: api/announcement
+        //GET: api/announcements
         [Route("api/announcements")]
         public HttpResponseMessage getAnnouncements()
         {
