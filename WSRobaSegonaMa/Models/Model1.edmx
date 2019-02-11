@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="RobaSegonaMaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="RobaSegonaMaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrator">
           <Key>
             <PropertyRef Name="Id" />
@@ -30,7 +30,7 @@
           <Property Name="message" Type="nvarchar(max)" Nullable="false" />
           <Property Name="dateCreated" Type="datetime" Nullable="false" />
           <Property Name="language" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Recipient_Id" Type="int" Nullable="false" />
+          <Property Name="recipient" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Classification">
           <Key>
@@ -39,6 +39,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="classificationType" Type="nvarchar(max)" Nullable="false" />
           <Property Name="active" Type="bit" Nullable="false" />
+          <Property Name="value" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Clothes">
           <Key>
@@ -68,7 +69,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="codiColor" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="colorCode" Type="nvarchar(max)" Nullable="false" />
           <Property Name="name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="active" Type="bit" Nullable="false" />
         </EntityType>
@@ -90,6 +91,7 @@
           <Property Name="picturePath" Type="nvarchar(max)" />
           <Property Name="ammountGiven" Type="int" />
           <Property Name="dni" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="points" Type="int" Nullable="false" />
           <Property Name="Language_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DonorRewards">
@@ -157,15 +159,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Order_Id" Type="int" Nullable="false" />
           <Property Name="Clothes_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Recipient">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="query" Type="nvarchar(max)" />
-          <Property Name="dateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Requestor">
           <Key>
@@ -393,18 +386,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RecipientAnnouncement">
-          <End Role="Recipient" Type="Self.Recipient" Multiplicity="1" />
-          <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipient">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Announcement">
-              <PropertyRef Name="Recipient_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RequestorClothesRequest">
           <End Role="Requestor" Type="Self.Requestor" Multiplicity="1" />
           <End Role="ClothesRequest" Type="Self.ClothesRequest" Multiplicity="*" />
@@ -517,7 +498,6 @@
           <EntitySet Name="Names" EntityType="Self.Names" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderLines" EntityType="Self.OrderLines" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Recipient" EntityType="Self.Recipient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Requestor" EntityType="Self.Requestor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RewardInfoLang" EntityType="Self.RewardInfoLang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rewards" EntityType="Self.Rewards" Schema="dbo" store:Type="Tables" />
@@ -576,10 +556,6 @@
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderLines" EntitySet="OrderLines" />
           </AssociationSet>
-          <AssociationSet Name="FK_RecipientAnnouncement" Association="Self.FK_RecipientAnnouncement">
-            <End Role="Recipient" EntitySet="Recipient" />
-            <End Role="Announcement" EntitySet="Announcement" />
-          </AssociationSet>
           <AssociationSet Name="FK_RequestorClothesRequest" Association="Self.FK_RequestorClothesRequest">
             <End Role="Requestor" EntitySet="Requestor" />
             <End Role="ClothesRequest" EntitySet="ClothesRequest" />
@@ -613,7 +589,8 @@
             <End Role="Clothes" EntitySet="Clothes" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RobaSegonaMaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -643,9 +620,8 @@
           <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Recipient_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Recipient" Relationship="Self.FK_RecipientAnnouncement" FromRole="Announcement" ToRole="Recipient" />
-          <Property Name="language" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="language" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="recipient" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="Classification">
           <Key>
@@ -654,6 +630,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="classificationType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
+          <Property Name="value" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Clothes" Relationship="Self.FK_ClassificationClothes" FromRole="Classification" ToRole="Clothes" />
         </EntityType>
         <EntityType Name="Cloth">
@@ -693,7 +670,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codiColor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="colorCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="active" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Clothes" Relationship="Self.FK_ColorClothes" FromRole="Color" ToRole="Clothes" />
@@ -716,6 +693,7 @@
           <Property Name="picturePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ammountGiven" Type="Int32" />
           <Property Name="dni" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="points" Type="Int32" Nullable="false" />
           <Property Name="Language_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Language" Relationship="Self.FK_LanguageDonor" FromRole="Donor" ToRole="Language" />
           <NavigationProperty Name="Rewards" Relationship="Self.DonorRewards" FromRole="Donor" ToRole="Rewards" />
@@ -789,16 +767,6 @@
           <Property Name="Clothes_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cloth" Relationship="Self.FK_ClothesOrderLines" FromRole="OrderLines" ToRole="Clothes" />
           <NavigationProperty Name="Order" Relationship="Self.FK_OrderOrderLines" FromRole="OrderLines" ToRole="Order" />
-        </EntityType>
-        <EntityType Name="Recipient">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="query" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Announcements" Relationship="Self.FK_RecipientAnnouncement" FromRole="Recipient" ToRole="Announcement" />
         </EntityType>
         <EntityType Name="Requestor">
           <Key>
@@ -904,18 +872,6 @@
             </Principal>
             <Dependent Role="Administrator">
               <PropertyRef Name="Warehouse_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RecipientAnnouncement">
-          <End Role="Recipient" Type="Self.Recipient" Multiplicity="1" />
-          <End Role="Announcement" Type="Self.Announcement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipient">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Announcement">
-              <PropertyRef Name="Recipient_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1142,7 +1098,6 @@
           <EntitySet Name="Names" EntityType="Self.Name" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="OrderLines" EntityType="Self.OrderLine" />
-          <EntitySet Name="Recipients" EntityType="Self.Recipient" />
           <EntitySet Name="Requestors" EntityType="Self.Requestor" />
           <EntitySet Name="RewardInfoLangs" EntityType="Self.RewardInfoLang" />
           <EntitySet Name="Rewards" EntityType="Self.Reward" />
@@ -1156,10 +1111,6 @@
           <AssociationSet Name="FK_WarehouseAdministrador" Association="Self.FK_WarehouseAdministrador">
             <End Role="Warehouse" EntitySet="Warehouses" />
             <End Role="Administrator" EntitySet="Administrators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RecipientAnnouncement" Association="Self.FK_RecipientAnnouncement">
-            <End Role="Recipient" EntitySet="Recipients" />
-            <End Role="Announcement" EntitySet="Announcements" />
           </AssociationSet>
           <AssociationSet Name="FK_ClassificationClothes" Association="Self.FK_ClassificationClothes">
             <End Role="Classification" EntitySet="Classifications" />
@@ -1260,12 +1211,12 @@
           <EntitySetMapping Name="Announcements">
             <EntityTypeMapping TypeName="RobaSegonaMaModel.Announcement">
               <MappingFragment StoreEntitySet="Announcement">
-                <ScalarProperty Name="language" ColumnName="language" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="message" ColumnName="message" />
                 <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
-                <ScalarProperty Name="Recipient_Id" ColumnName="Recipient_Id" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="recipient" ColumnName="recipient" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1275,6 +1226,7 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="classificationType" ColumnName="classificationType" />
                 <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="value" ColumnName="value" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1307,7 +1259,7 @@
             <EntityTypeMapping TypeName="RobaSegonaMaModel.Color">
               <MappingFragment StoreEntitySet="Color">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="codiColor" ColumnName="codiColor" />
+                <ScalarProperty Name="colorCode" ColumnName="colorCode" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="active" ColumnName="active" />
               </MappingFragment>
@@ -1330,6 +1282,7 @@
                 <ScalarProperty Name="picturePath" ColumnName="picturePath" />
                 <ScalarProperty Name="ammountGiven" ColumnName="ammountGiven" />
                 <ScalarProperty Name="dni" ColumnName="dni" />
+                <ScalarProperty Name="points" ColumnName="points" />
                 <ScalarProperty Name="Language_Id" ColumnName="Language_Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1396,16 +1349,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
                 <ScalarProperty Name="Clothes_Id" ColumnName="Clothes_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Recipients">
-            <EntityTypeMapping TypeName="RobaSegonaMaModel.Recipient">
-              <MappingFragment StoreEntitySet="Recipient">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="query" ColumnName="query" />
-                <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

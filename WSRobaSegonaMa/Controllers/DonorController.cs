@@ -81,5 +81,15 @@ namespace WSRobaSegonaMa.Controllers
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, canLogin);
             return response;
         }
+
+
+        // POST: api/donor/updPoints
+        [Route("api/donor/login")]
+        public HttpResponseMessage UpdatePoints([FromBody] Donor val)
+        {
+            var canDo = DonorRepository.UpdatePoints(val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, canDo);
+            return response;
+        }
     }
 }
