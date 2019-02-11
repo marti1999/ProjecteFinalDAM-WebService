@@ -4,31 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5d0f497f4652496c9d15974cb4358303" Name="Diagram1" ZoomLevel="77">
+      <Diagram DiagramId="b3e851bc2d5e4a17a413a2cafe4a74e6" Name="Diagram1">
         <EntityTypeShape EntityType="RobaSegonaMaModel.Administrator" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.Announcement" Width="1.5" PointX="14.125" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.Classification" Width="1.5" PointX="8.25" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Announcement" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Classification" Width="1.5" PointX="8.25" PointY="14.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Cloth" Width="1.5" PointX="10.5" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.ClothesRequest" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.Color" Width="1.5" PointX="8.25" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.ClothesRequest" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Color" Width="1.5" PointX="8.25" PointY="17.5" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Donor" Width="1.5" PointX="3" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.Gender" Width="1.5" PointX="8.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Gender" Width="1.5" PointX="8.25" PointY="20.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Language" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.MathOperation" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.MathOperation" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.MaxClaim" Width="1.5" PointX="3.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.Name" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Name" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Order" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.OrderLine" Width="1.5" PointX="12.75" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.Recipient" Width="1.5" PointX="11.875" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.Requestor" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.RewardInfoLang" Width="1.5" PointX="7.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.OrderLine" Width="1.5" PointX="12.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Requestor" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.RewardInfoLang" Width="1.5" PointX="7.5" PointY="11.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Reward" Width="1.5" PointX="5.25" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.Size" Width="1.5" PointX="8.25" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Size" Width="1.5" PointX="8.25" PointY="22.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Status" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.Warehouse" Width="1.5" PointX="8.25" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Warehouse" Width="1.5" PointX="8.25" PointY="25.375" IsExpanded="true" />
         <AssociationConnector Association="RobaSegonaMaModel.FK_LanguageAdministrador" ManuallyRouted="false" />
         <AssociationConnector Association="RobaSegonaMaModel.FK_WarehouseAdministrador" ManuallyRouted="false" />
-        <AssociationConnector Association="RobaSegonaMaModel.FK_RecipientAnnouncement" ManuallyRouted="false" />
         <AssociationConnector Association="RobaSegonaMaModel.FK_ClassificationClothes" ManuallyRouted="false" />
         <AssociationConnector Association="RobaSegonaMaModel.FK_ClothesClothesRequest" ManuallyRouted="false" />
         <AssociationConnector Association="RobaSegonaMaModel.FK_ClothesOrderLines" ManuallyRouted="false" />

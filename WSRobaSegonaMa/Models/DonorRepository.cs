@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using WSRobaSegonaMa.Controllers;
-
 
 namespace WSRobaSegonaMa.Models
 {
@@ -64,6 +62,7 @@ namespace WSRobaSegonaMa.Models
                 if (c.ammountGiven != null) c0.ammountGiven = c.ammountGiven;
                 if (c.Language != null) c0.Language = c.Language;
                 if (c.dni != null) c0.dni = c.dni;
+                if (c.points != null) c0.points = c.points;
 
                 
 
@@ -75,6 +74,7 @@ namespace WSRobaSegonaMa.Models
                 return null;
             }
         }
+
 
         public static void DeleteDonor(String id)
         {
@@ -94,6 +94,19 @@ namespace WSRobaSegonaMa.Models
                 dataContext.Donors.Remove(c);
                 dataContext.SaveChanges();
             }
+        }
+
+        public static bool UpdatePoints(Donor newDonor)
+        {
+            Donor d = GetDonor(newDonor.Id);
+
+            int valorFinal = d.points + newDonor.points;
+            if (valorFinal < 0)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public static bool CanLogin(Donor a)

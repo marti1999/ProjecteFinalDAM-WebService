@@ -47,7 +47,7 @@ namespace WSRobaSegonaMa.Models
                 if (c.title != null) c2.title = c.title;
                 if (c.message != null) c2.message = c.message;
                 if (c.dateCreated != null) c2.dateCreated = c.dateCreated;
-                if (c.Recipient != null) c2.Recipient = c.Recipient;
+                if (c.recipient != null) c2.recipient = c.recipient;
                 
                 dc.SaveChanges();
                 return c2;

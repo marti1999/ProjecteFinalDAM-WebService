@@ -18,9 +18,7 @@ namespace WSRobaSegonaMa.Models
         public string title { get; set; }
         public string message { get; set; }
         public System.DateTime dateCreated { get; set; }
-        public int Recipient_Id { get; set; }
         public string language { get; set; }
-    
-        public virtual Recipient Recipient { get; set; }
+        public string recipient { get; set; }
     }
 }
