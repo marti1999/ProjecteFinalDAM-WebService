@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Http;
 using WSRobaSegonaMa.Models;
 
-namespace WSRobaSegonaMa.Controllers
+namespace WSRobaSegonaMa.Controllers  
 {
     public class AnnouncementController : ApiController
     {
