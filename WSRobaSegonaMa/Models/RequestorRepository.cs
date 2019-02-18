@@ -61,8 +61,9 @@ namespace WSRobaSegonaMa.Models
                 if (c.dateCreated != null) c0.dateCreated = c.dateCreated;
                 if (c.active != null) c0.active = c.active;
                 if (c.picturePath != null) c0.picturePath = c.picturePath;
-                if (c.Language != null) c0.Language = c.Language;
+                if (c.Language_Id != null) c0.Language_Id= c.Language_Id;
                 if (c.dni != null) c0.dni = c.dni;
+                if (c.Status_Id != null) c0.Status_Id= c.Status_Id;
 
                 dataContext.SaveChanges();
                 return GetRequestor(id);
