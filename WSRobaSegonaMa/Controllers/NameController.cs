@@ -20,9 +20,9 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
-        // GET: api/classificationsCat
-        [Route("api/classificationsCat")]
-        public HttpResponseMessage GetClassificationsCat()
+        // GET: api/classifications/en
+        [Route("api/classifications/{lang}")]
+        public HttpResponseMessage GetClassificationsCat(string lang)
         {
             var classifications = ClassificationRepository.GetAllClassifications();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, classifications);
