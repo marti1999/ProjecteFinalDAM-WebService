@@ -26,8 +26,6 @@ namespace WSRobaSegonaMa
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            //config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
-            //    = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }
