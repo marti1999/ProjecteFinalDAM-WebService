@@ -194,7 +194,7 @@
     <Compile Include="Controllers\ClothController.cs" />
     <Compile Include="Controllers\ColorController.cs" />
     <Compile Include="Controllers\DonorController.cs" />
-    <Compile Include="Controllers\NameController.cs" />
+    <Compile Include="Controllers\ClassificationController.cs" />
     <Compile Include="Controllers\RequestorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Utils.cs" />

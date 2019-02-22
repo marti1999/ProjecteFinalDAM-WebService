@@ -9,7 +9,7 @@ using WSRobaSegonaMa.Models;
 
 namespace WSRobaSegonaMa.Controllers
 {
-    public class NameController : ApiController
+    public class ClassificationController : ApiController
     {
         // GET: api/classifications
         [Route("api/classifications")]
@@ -24,7 +24,7 @@ namespace WSRobaSegonaMa.Controllers
         [Route("api/classifications/{lang}")]
         public HttpResponseMessage GetClassificationsCat(string lang)
         {
-            var classifications = ClassificationRepository.GetAllClassifications();
+            var classifications = ClassificationRepository.GetAllClassificationsLang(lang);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, classifications);
             return response;
         }

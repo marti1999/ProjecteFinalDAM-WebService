@@ -16,16 +16,16 @@ namespace WSRobaSegonaMa.Models
             return lc;
         }
 
-        public static List<Classification> GetAllClassificationCat()
+        public static List<Classification> GetAllClassificationsLang(string lang)
             {
             List<Classification> lc = dataContext.Classifications.ToList();
 
-            List<Name> ln = dataContext.Names.Where(x => x.itemType.ToLower().Contains("classification") && x.Language_Id == 3).ToList();
+            //List<Name> ln = dataContext.Names.Where(x => x.itemType.ToLower().Contains("classification") && x.Language.code.Equals(lang.ToLower())).ToList();
 
             foreach (Classification i in lc)
             {
                 Name n = dataContext.Names
-                    .SingleOrDefault(x => x.itemType.ToLower().Contains("classification") && x.Language_Id == 3 && x.itemId == i.Id);
+                    .SingleOrDefault(x => x.itemType.ToLower().Contains("classification") && x.Language.code.Equals(lang.ToLower()) && x.itemId == i.Id);
 
                 if (n != null)
                 {
