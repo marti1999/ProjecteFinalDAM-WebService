@@ -14,5 +14,11 @@ namespace WSRobaSegonaMa.Models
             List<Color> lc = dataContext.Colors.ToList();
             return lc;
         }
+
+        public static Color getColorByCode(string code)
+        {
+            Color c = dataContext.Colors.Where(x => x.colorCode.Equals(code)).FirstOrDefault();
+            return c;
+        }
     }
 }

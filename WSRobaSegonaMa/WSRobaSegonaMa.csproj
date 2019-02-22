@@ -194,6 +194,7 @@
     <Compile Include="Controllers\ClothController.cs" />
     <Compile Include="Controllers\ColorController.cs" />
     <Compile Include="Controllers\DonorController.cs" />
+    <Compile Include="Controllers\NameController.cs" />
     <Compile Include="Controllers\RequestorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Utils.cs" />
@@ -212,6 +213,7 @@
     <Compile Include="Models\Classification.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClassificationRepository.cs" />
     <Compile Include="Models\Cloth.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
