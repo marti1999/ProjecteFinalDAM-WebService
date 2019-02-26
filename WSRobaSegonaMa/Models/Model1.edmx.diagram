@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b3e851bc2d5e4a17a413a2cafe4a74e6" Name="Diagram1" ZoomLevel="88">
+      <Diagram DiagramId="b3e851bc2d5e4a17a413a2cafe4a74e6" Name="Diagram1" ZoomLevel="66">
         <EntityTypeShape EntityType="RobaSegonaMaModel.Administrator" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Announcement" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Classification" Width="1.5" PointX="8.25" PointY="14.75" IsExpanded="true" />
