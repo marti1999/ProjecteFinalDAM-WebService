@@ -235,6 +235,8 @@
     <Compile Include="Models\Language.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MaxClaimsSenseRel.cs" />
+    <Compile Include="Models\LanguageSenseRel.cs" />
     <Compile Include="Models\MathOperation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

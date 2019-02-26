@@ -58,8 +58,8 @@ namespace WSRobaSegonaMa.Models
                 if (c.isSuper != null) c0.isSuper = c.isSuper;
                 if (c.active != null) c0.active = c.active;
                 if (c.workerCode != null) c0.workerCode = c.workerCode;
-                if (c.Language != null) c0.Language = c.Language;
-                if (c.Warehouse != null) c0.Warehouse = c.Warehouse;
+                if (c.Language_Id != null) c0.Language_Id = c.Language_Id;
+                if (c.Warehouse_Id != null) c0.Warehouse_Id = c.Warehouse_Id;
 
                 dataContext.SaveChanges();
                 return GetAdministrator(id);
