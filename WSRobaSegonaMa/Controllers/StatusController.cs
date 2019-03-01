@@ -15,7 +15,7 @@ namespace WSRobaSegonaMa.Controllers
         [Route("api/status")]
         public HttpResponseMessage Get()
         {
-            var requestors = RequestorRepository.GetAllRequestors();
+            var requestors = StatusRepository.GetAllStatus();
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, requestors);
             return response;
         }
