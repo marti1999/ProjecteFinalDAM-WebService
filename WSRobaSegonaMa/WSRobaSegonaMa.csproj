@@ -239,10 +239,10 @@
     <Compile Include="Models\Language.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SenseRel\LanguageSenseRel.cs" />
+    <Compile Include="Models\SenseRel\MaxClaimsSenseRel.cs" />
+    <Compile Include="Models\SenseRel\StatusSenseRel.cs" />
     <Compile Include="Models\StatusRepository.cs" />
-    <Compile Include="Models\StatusSenseRel.cs" />
-    <Compile Include="Models\MaxClaimsSenseRel.cs" />
-    <Compile Include="Models\LanguageSenseRel.cs" />
     <Compile Include="Models\MathOperation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
