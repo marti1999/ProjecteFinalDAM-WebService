@@ -18,6 +18,8 @@ namespace WSRobaSegonaMa.Models
         public RobaSegonaMaEntities()
             : base("name=RobaSegonaMaEntities")
         {
+            //this.Configuration.LazyLoadingEnabled = false;
+            //this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
