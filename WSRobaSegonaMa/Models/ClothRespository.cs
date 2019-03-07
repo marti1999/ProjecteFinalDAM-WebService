@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.Ajax.Utilities;
 using WSRobaSegonaMa.Controllers;
 
 namespace WSRobaSegonaMa.Models
@@ -27,6 +28,7 @@ namespace WSRobaSegonaMa.Models
         {
             try
             {
+                
                 dc.Clothes.Add(c);
                 dc.SaveChanges();
                 return c;

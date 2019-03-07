@@ -7,7 +7,7 @@ namespace WSRobaSegonaMa.Models
 {
     public class warehouseRepository
     {
-        private static RobaSegonaMaEntities dc = new RobaSegonaMaEntities();
+        private static RobaSegonaMaEntities dc = new RobaSegonaMaEntities(false);
 
         public static List<Warehouse> GetAllWarehouses()
         {

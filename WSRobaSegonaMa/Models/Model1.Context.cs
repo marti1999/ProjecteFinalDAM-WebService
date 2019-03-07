@@ -12,13 +12,13 @@ namespace WSRobaSegonaMa.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class RobaSegonaMaEntities : DbContext
     {
         public RobaSegonaMaEntities()
             : base("name=RobaSegonaMaEntities")
         {
-            
+
         }
 
         public RobaSegonaMaEntities(bool enabled)
@@ -29,7 +29,7 @@ namespace WSRobaSegonaMa.Models
                 this.Configuration.LazyLoadingEnabled = false;
                 this.Configuration.ProxyCreationEnabled = false;
             }
-            
+
         }
 
 
@@ -38,7 +38,7 @@ namespace WSRobaSegonaMa.Models
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Administrator> Administrators { get; set; }
         public virtual DbSet<Announcement> Announcements { get; set; }
         public virtual DbSet<Classification> Classifications { get; set; }
