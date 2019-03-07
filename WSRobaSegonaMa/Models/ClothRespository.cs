@@ -28,8 +28,10 @@ namespace WSRobaSegonaMa.Models
         {
             try
             {
-                
-                dc.Clothes.Add(c);
+                Cloth c2 = ClothRespository.getCloth(4);
+                c2.Id = 7;
+               // dc.Clothes.Add(c);
+                dc.Clothes.Add(c2);
                 dc.SaveChanges();
                 return c;
             }
