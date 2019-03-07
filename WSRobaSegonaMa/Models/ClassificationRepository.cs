@@ -8,7 +8,7 @@ namespace WSRobaSegonaMa.Models
     public class ClassificationRepository
     {
 
-        private static RobaSegonaMaEntities dataContext = new RobaSegonaMaEntities();
+        private static RobaSegonaMaEntities dataContext = new RobaSegonaMaEntities(false);
 
         public static List<Classification> GetAllClassifications()
         {

@@ -7,7 +7,7 @@ namespace WSRobaSegonaMa.Models
 {
     public class GenderRepository
     {
-        private static RobaSegonaMaEntities dc = new RobaSegonaMaEntities();
+        private static RobaSegonaMaEntities dc = new RobaSegonaMaEntities(false);
 
         public static List<Gender> GetAllGenders()
         {

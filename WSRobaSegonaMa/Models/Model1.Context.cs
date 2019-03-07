@@ -18,10 +18,22 @@ namespace WSRobaSegonaMa.Models
         public RobaSegonaMaEntities()
             : base("name=RobaSegonaMaEntities")
         {
-            //this.Configuration.LazyLoadingEnabled = false;
-            //this.Configuration.ProxyCreationEnabled = false;
+            
         }
-    
+
+        public RobaSegonaMaEntities(bool enabled)
+            : base("name=RobaSegonaMaEntities")
+        {
+            if (!enabled)
+            {
+                this.Configuration.LazyLoadingEnabled = false;
+                this.Configuration.ProxyCreationEnabled = false;
+            }
+            
+        }
+
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

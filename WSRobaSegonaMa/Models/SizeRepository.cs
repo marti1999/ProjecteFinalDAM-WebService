@@ -7,7 +7,7 @@ namespace WSRobaSegonaMa.Models
 {
     public class SizeRepository
     {
-        private static RobaSegonaMaEntities dataContext = new RobaSegonaMaEntities();
+        private static RobaSegonaMaEntities dataContext = new RobaSegonaMaEntities(false);
 
         public static List<Size> GetAllSizes()
         {

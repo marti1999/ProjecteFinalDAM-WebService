@@ -7,7 +7,9 @@ namespace WSRobaSegonaMa.Models
 {
     public class ColorRepository
     {
-        private static RobaSegonaMaEntities dataContext = new RobaSegonaMaEntities();
+        private static RobaSegonaMaEntities dataContext = new RobaSegonaMaEntities(false);
+
+
 
         public static List<Color> GetAllColors()
         {
