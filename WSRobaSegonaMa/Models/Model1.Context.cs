@@ -21,16 +21,7 @@ namespace WSRobaSegonaMa.Models
 
         }
 
-        public RobaSegonaMaEntities(bool enabled)
-            : base("name=RobaSegonaMaEntities")
-        {
-            if (!enabled)
-            {
-                this.Configuration.LazyLoadingEnabled = false;
-                this.Configuration.ProxyCreationEnabled = false;
-            }
-
-        }
+       
 
 
 
