@@ -239,10 +239,6 @@
     <Compile Include="Models\Language.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SenseRel\LanguageSenseRel.cs" />
-    <Compile Include="Models\SenseRel\MaxClaimsSenseRel.cs" />
-    <Compile Include="Models\SenseRel\StatusSenseRel.cs" />
-    <Compile Include="Models\StatusRepository.cs" />
     <Compile Include="Models\MathOperation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -276,21 +272,25 @@
     <Compile Include="Models\Requestor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RequestorRepository.cs" />
-    <Compile Include="Models\DonorRepository.cs" />
     <Compile Include="Models\Reward.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RewardInfoLang.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SenseRel\LanguageSenseRel.cs" />
+    <Compile Include="Models\SenseRel\MaxClaimsSenseRel.cs" />
+    <Compile Include="Models\SenseRel\StatusSenseRel.cs" />
     <Compile Include="Models\Size.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SizeRepository.cs" />
     <Compile Include="Models\Status.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StatusRepository.cs" />
+    <Compile Include="Models\RequestorRepository.cs" />
+    <Compile Include="Models\DonorRepository.cs" />
+    <Compile Include="Models\SizeRepository.cs" />
     <Compile Include="Models\Warehouse.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
