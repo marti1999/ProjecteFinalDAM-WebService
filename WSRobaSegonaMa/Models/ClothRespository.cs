@@ -28,10 +28,9 @@ namespace WSRobaSegonaMa.Models
         {
             try
             {
-                Cloth c2 = ClothRespository.getCloth(4);
-                c2.Id = 7;
-               // dc.Clothes.Add(c);
-                dc.Clothes.Add(c2);
+              
+                dc.Clothes.Add(c);
+              
                 dc.SaveChanges();
                 return c;
             }
@@ -49,7 +48,7 @@ namespace WSRobaSegonaMa.Models
 
                 
                 if (c.active != null) c2.active = c.active;
-                if (c.ClothesRequest != null) c2.ClothesRequest = c.ClothesRequest;
+               
                 if (c.Color != null) c2.Color = c.Color;
                 if (c.Gender != null) c2.Gender = c.Gender;
                 if (c.Size != null) c2.Size = c.Size;
