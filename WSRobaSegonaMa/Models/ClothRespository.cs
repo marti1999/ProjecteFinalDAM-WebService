@@ -32,12 +32,12 @@ namespace WSRobaSegonaMa.Models
                 dc.Clothes.Add(c);
               
                 dc.SaveChanges();
-                return c;
+                return c; 
             }
             catch (Exception e)
             {
                 return null;
-            }
+            } 
         }
 
         public static Cloth updateCloth(int id, Cloth c)
