@@ -239,11 +239,6 @@
     <Compile Include="Models\Language.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RobaSegonaMaEntities2.cs" />
-    <Compile Include="Models\SenseRel\LanguageSenseRel.cs" />
-    <Compile Include="Models\SenseRel\MaxClaimsSenseRel.cs" />
-    <Compile Include="Models\SenseRel\StatusSenseRel.cs" />
-    <Compile Include="Models\StatusRepository.cs" />
     <Compile Include="Models\MathOperation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -283,6 +278,7 @@
     <Compile Include="Models\RewardInfoLang.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RobaSegonaMaEntities2.cs" />
     <Compile Include="Models\SenseRel\LanguageSenseRel.cs" />
     <Compile Include="Models\SenseRel\MaxClaimsSenseRel.cs" />
     <Compile Include="Models\SenseRel\StatusSenseRel.cs" />
