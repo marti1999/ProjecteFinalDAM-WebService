@@ -18,9 +18,9 @@ namespace WSRobaSegonaMa.Models
             return lc;
         }
 
-        public static Status GetStatus(int requestorID)
+        public static Status GetStatus(int statusID)
         {
-            Status c = dataContext.Status.Where(x => x.Id == requestorID).SingleOrDefault();
+            Status c = dataContext.Status.Where(x => x.Id == statusID).SingleOrDefault();
             return c;
         }
 
@@ -58,11 +58,8 @@ namespace WSRobaSegonaMa.Models
 
         public static void DeleteStatus(int id)
         {
-            Status c;
-
-            c = dataContext.Status.Where(x => x.Id == id).SingleOrDefault();
-
-
+            Status c = dataContext.Status.Where(x => x.Id == id).SingleOrDefault();
+            
             if (c != null)
             {
                 dataContext.Status.Remove(c);

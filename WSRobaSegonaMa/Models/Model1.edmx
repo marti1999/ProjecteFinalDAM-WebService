@@ -191,9 +191,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="title" Type="nvarchar(max)" />
-          <Property Name="description" Type="nvarchar(max)" />
           <Property Name="neededPoints" Type="int" Nullable="false" />
+          <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="dateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Size">
@@ -780,9 +779,8 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="neededPoints" Type="Int32" Nullable="false" />
+          <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="RewardInfoLangs" Relationship="Self.FK_rewardInfoLangRewards" FromRole="Rewards" ToRole="RewardInfoLang" />
           <NavigationProperty Name="Donors" Relationship="Self.DonorRewards" FromRole="Rewards" ToRole="Donor" />
@@ -1333,9 +1331,8 @@
             <EntityTypeMapping TypeName="RobaSegonaMaModel.Reward">
               <MappingFragment StoreEntitySet="Rewards">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="title" ColumnName="title" />
-                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="neededPoints" ColumnName="neededPoints" />
+                <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
               </MappingFragment>
             </EntityTypeMapping>
