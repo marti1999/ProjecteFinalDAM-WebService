@@ -195,6 +195,7 @@
     <Compile Include="Controllers\ColorController.cs" />
     <Compile Include="Controllers\DonorController.cs" />
     <Compile Include="Controllers\ClassificationController.cs" />
+    <Compile Include="Controllers\RewardController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\GenderController.cs" />
     <Compile Include="Controllers\RequestorController.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="Models\Color.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\RewardRepository.cs" />
     <Compile Include="Models\ColorRepository.cs" />
     <Compile Include="Models\Donor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
