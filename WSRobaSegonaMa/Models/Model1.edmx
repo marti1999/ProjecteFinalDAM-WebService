@@ -151,13 +151,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="dateCreated" Type="datetime" Nullable="false" />
           <Property Name="Requestor_Id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="OrderLines">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Order_Id" Type="int" Nullable="false" />
           <Property Name="Clothes_Id" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Requestor">
@@ -198,8 +191,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" />
+          <Property Name="description" Type="nvarchar(max)" />
           <Property Name="neededPoints" Type="int" Nullable="false" />
-          <Property Name="active" Type="bit" Nullable="false" />
           <Property Name="dateCreated" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Size">
@@ -253,14 +247,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClothesOrderLines">
+        <Association Name="FK_ClothesOrder">
           <End Role="Clothes" Type="Self.Clothes" Multiplicity="1" />
-          <End Role="OrderLines" Type="Self.OrderLines" Multiplicity="*" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clothes">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="OrderLines">
+            <Dependent Role="Order">
               <PropertyRef Name="Clothes_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -370,18 +364,6 @@
             </Principal>
             <Dependent Role="Requestor">
               <PropertyRef Name="MaxClaims_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_OrderOrderLines">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="OrderLines" Type="Self.OrderLines" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrderLines">
-              <PropertyRef Name="Order_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -496,7 +478,6 @@
           <EntitySet Name="MaxClaims" EntityType="Self.MaxClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Names" EntityType="Self.Names" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="OrderLines" EntityType="Self.OrderLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Requestor" EntityType="Self.Requestor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RewardInfoLang" EntityType="Self.RewardInfoLang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rewards" EntityType="Self.Rewards" Schema="dbo" store:Type="Tables" />
@@ -511,9 +492,9 @@
             <End Role="Clothes" EntitySet="Clothes" />
             <End Role="ClothesRequest" EntitySet="ClothesRequest" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClothesOrderLines" Association="Self.FK_ClothesOrderLines">
+          <AssociationSet Name="FK_ClothesOrder" Association="Self.FK_ClothesOrder">
             <End Role="Clothes" EntitySet="Clothes" />
-            <End Role="OrderLines" EntitySet="OrderLines" />
+            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_ColorClothes" Association="Self.FK_ColorClothes">
             <End Role="Color" EntitySet="Color" />
@@ -550,10 +531,6 @@
           <AssociationSet Name="FK_MaxClaimsRequestor" Association="Self.FK_MaxClaimsRequestor">
             <End Role="MaxClaims" EntitySet="MaxClaims" />
             <End Role="Requestor" EntitySet="Requestor" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderOrderLines" Association="Self.FK_OrderOrderLines">
-            <End Role="Order" EntitySet="Order" />
-            <End Role="OrderLines" EntitySet="OrderLines" />
           </AssociationSet>
           <AssociationSet Name="FK_RequestorClothesRequest" Association="Self.FK_RequestorClothesRequest">
             <End Role="Requestor" EntitySet="Requestor" />
@@ -646,7 +623,7 @@
           <Property Name="Classification_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Classification" Relationship="Self.FK_ClassificationClothes" FromRole="Clothes" ToRole="Classification" />
           <NavigationProperty Name="ClothesRequests" Relationship="Self.FK_ClothesClothesRequest" FromRole="Clothes" ToRole="ClothesRequest" />
-          <NavigationProperty Name="OrderLines" Relationship="Self.FK_ClothesOrderLines" FromRole="Clothes" ToRole="OrderLines" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_ClothesOrder" FromRole="Clothes" ToRole="Order" />
           <NavigationProperty Name="Color" Relationship="Self.FK_ColorClothes" FromRole="Clothes" ToRole="Color" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_GenderClothes" FromRole="Clothes" ToRole="Gender" />
           <NavigationProperty Name="Size" Relationship="Self.FK_SizeClothes" FromRole="Clothes" ToRole="Size" />
@@ -754,18 +731,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Requestor_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderOrderLines" FromRole="Order" ToRole="OrderLines" />
-          <NavigationProperty Name="Requestor" Relationship="Self.FK_RequestorOrder" FromRole="Order" ToRole="Requestor" />
-        </EntityType>
-        <EntityType Name="OrderLine">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Order_Id" Type="Int32" Nullable="false" />
           <Property Name="Clothes_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cloth" Relationship="Self.FK_ClothesOrderLines" FromRole="OrderLines" ToRole="Clothes" />
-          <NavigationProperty Name="Order" Relationship="Self.FK_OrderOrderLines" FromRole="OrderLines" ToRole="Order" />
+          <NavigationProperty Name="Cloth" Relationship="Self.FK_ClothesOrder" FromRole="Order" ToRole="Clothes" />
+          <NavigationProperty Name="Requestor" Relationship="Self.FK_RequestorOrder" FromRole="Order" ToRole="Requestor" />
         </EntityType>
         <EntityType Name="Requestor">
           <Key>
@@ -812,8 +780,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="neededPoints" Type="Int32" Nullable="false" />
-          <Property Name="active" Type="Boolean" Nullable="false" />
           <Property Name="dateCreated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="RewardInfoLangs" Relationship="Self.FK_rewardInfoLangRewards" FromRole="Rewards" ToRole="RewardInfoLang" />
           <NavigationProperty Name="Donors" Relationship="Self.DonorRewards" FromRole="Rewards" ToRole="Donor" />
@@ -897,14 +866,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ClothesOrderLines">
+        <Association Name="FK_ClothesOrder">
           <End Role="Clothes" Type="Self.Cloth" Multiplicity="1" />
-          <End Role="OrderLines" Type="Self.OrderLine" Multiplicity="*" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Clothes">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="OrderLines">
+            <Dependent Role="Order">
               <PropertyRef Name="Clothes_Id" />
             </Dependent>
           </ReferentialConstraint>
@@ -1029,18 +998,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderOrderLines">
-          <End Role="Order" Type="Self.Order" Multiplicity="1" />
-          <End Role="OrderLines" Type="Self.OrderLine" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Order">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrderLines">
-              <PropertyRef Name="Order_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RequestorOrder">
           <End Role="Requestor" Type="Self.Requestor" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -1095,7 +1052,6 @@
           <EntitySet Name="MaxClaims" EntityType="Self.MaxClaim" />
           <EntitySet Name="Names" EntityType="Self.Name" />
           <EntitySet Name="Orders" EntityType="Self.Order" />
-          <EntitySet Name="OrderLines" EntityType="Self.OrderLine" />
           <EntitySet Name="Requestors" EntityType="Self.Requestor" />
           <EntitySet Name="RewardInfoLangs" EntityType="Self.RewardInfoLang" />
           <EntitySet Name="Rewards" EntityType="Self.Reward" />
@@ -1118,9 +1074,9 @@
             <End Role="Clothes" EntitySet="Clothes" />
             <End Role="ClothesRequest" EntitySet="ClothesRequests" />
           </AssociationSet>
-          <AssociationSet Name="FK_ClothesOrderLines" Association="Self.FK_ClothesOrderLines">
+          <AssociationSet Name="FK_ClothesOrder" Association="Self.FK_ClothesOrder">
             <End Role="Clothes" EntitySet="Clothes" />
-            <End Role="OrderLines" EntitySet="OrderLines" />
+            <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_ColorClothes" Association="Self.FK_ColorClothes">
             <End Role="Color" EntitySet="Colors" />
@@ -1161,10 +1117,6 @@
           <AssociationSet Name="FK_MaxClaimsRequestor" Association="Self.FK_MaxClaimsRequestor">
             <End Role="MaxClaims" EntitySet="MaxClaims" />
             <End Role="Requestor" EntitySet="Requestors" />
-          </AssociationSet>
-          <AssociationSet Name="FK_OrderOrderLines" Association="Self.FK_OrderOrderLines">
-            <End Role="Order" EntitySet="Orders" />
-            <End Role="OrderLines" EntitySet="OrderLines" />
           </AssociationSet>
           <AssociationSet Name="FK_RequestorOrder" Association="Self.FK_RequestorOrder">
             <End Role="Requestor" EntitySet="Requestors" />
@@ -1338,14 +1290,6 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
                 <ScalarProperty Name="Requestor_Id" ColumnName="Requestor_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderLines">
-            <EntityTypeMapping TypeName="RobaSegonaMaModel.OrderLine">
-              <MappingFragment StoreEntitySet="OrderLines">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
                 <ScalarProperty Name="Clothes_Id" ColumnName="Clothes_Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1389,8 +1333,9 @@
             <EntityTypeMapping TypeName="RobaSegonaMaModel.Reward">
               <MappingFragment StoreEntitySet="Rewards">
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="neededPoints" ColumnName="neededPoints" />
-                <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="dateCreated" ColumnName="dateCreated" />
               </MappingFragment>
             </EntityTypeMapping>

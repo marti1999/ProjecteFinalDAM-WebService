@@ -38,7 +38,6 @@ namespace WSRobaSegonaMa.Models
         public virtual DbSet<MaxClaim> MaxClaims { get; set; }
         public virtual DbSet<Name> Names { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
-        public virtual DbSet<OrderLine> OrderLines { get; set; }
         public virtual DbSet<Requestor> Requestors { get; set; }
         public virtual DbSet<RewardInfoLang> RewardInfoLangs { get; set; }
         public virtual DbSet<Reward> Rewards { get; set; }

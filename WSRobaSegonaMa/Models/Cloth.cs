@@ -18,7 +18,7 @@ namespace WSRobaSegonaMa.Models
         public Cloth()
         {
             this.ClothesRequests = new HashSet<ClothesRequest>();
-            this.OrderLines = new HashSet<OrderLine>();
+            this.Orders = new HashSet<Order>();
         }
     
         public int Id { get; set; }
@@ -34,7 +34,7 @@ namespace WSRobaSegonaMa.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ClothesRequest> ClothesRequests { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderLine> OrderLines { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
         public virtual Color Color { get; set; }
         public virtual Gender Gender { get; set; }
         public virtual Size Size { get; set; }

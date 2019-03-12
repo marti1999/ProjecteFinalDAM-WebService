@@ -266,9 +266,6 @@
     <Compile Include="Models\Order.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\OrderLine.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Requestor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
