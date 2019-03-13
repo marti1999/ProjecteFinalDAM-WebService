@@ -70,7 +70,7 @@ namespace WSRobaSegonaMa.Models
             return c;
         }
 
-        public static void DeleteReward(string id)
+        public static void DeleteReward(int id)
         {
             Reward c = dataContext.Rewards.Where(x => x.Id == id).SingleOrDefault();
 
