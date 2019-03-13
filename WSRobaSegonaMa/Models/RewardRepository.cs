@@ -70,15 +70,15 @@ namespace WSRobaSegonaMa.Models
             return c;
         }
 
-        public static void DeleteReward(string id)
+       /* public static void DeleteReward(string id)
         {
-            Reward c = dataContext.Rewards.Where(x => x.Id == id).SingleOrDefault();
+           Reward c = dataContext.Rewards.Where(x => x.Id == id).SingleOrDefault();
 
             if (c != null)
             {
                 dataContext.Rewards.Remove(c);
                 dataContext.SaveChanges();
             }
-        }
+        } */
     }
 }
