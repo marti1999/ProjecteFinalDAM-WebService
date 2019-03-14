@@ -36,6 +36,7 @@ namespace WSRobaSegonaMa.Models
         public int householdMembers { get; set; }
         public string picturePath { get; set; }
         public int Id { get; set; }
+        public int points { get; set; }
         public int Language_Id { get; set; }
         public int MaxClaims_Id { get; set; }
         public int Status_Id { get; set; }
