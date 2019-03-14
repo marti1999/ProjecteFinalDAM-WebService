@@ -172,6 +172,7 @@
           <Property Name="householdMembers" Type="int" Nullable="false" />
           <Property Name="picturePath" Type="nvarchar(max)" />
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="points" Type="int" Nullable="false" />
           <Property Name="Language_Id" Type="int" Nullable="false" />
           <Property Name="MaxClaims_Id" Type="int" Nullable="false" />
           <Property Name="Status_Id" Type="int" Nullable="false" />
@@ -753,6 +754,7 @@
           <Property Name="householdMembers" Type="Int32" Nullable="false" />
           <Property Name="picturePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="points" Type="Int32" Nullable="false" />
           <Property Name="Language_Id" Type="Int32" Nullable="false" />
           <Property Name="MaxClaims_Id" Type="Int32" Nullable="false" />
           <Property Name="Status_Id" Type="Int32" Nullable="false" />
@@ -1310,6 +1312,7 @@
                 <ScalarProperty Name="householdMembers" ColumnName="householdMembers" />
                 <ScalarProperty Name="picturePath" ColumnName="picturePath" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="points" ColumnName="points" />
                 <ScalarProperty Name="Language_Id" ColumnName="Language_Id" />
                 <ScalarProperty Name="MaxClaims_Id" ColumnName="MaxClaims_Id" />
                 <ScalarProperty Name="Status_Id" ColumnName="Status_Id" />
