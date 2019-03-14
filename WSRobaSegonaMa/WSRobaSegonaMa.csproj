@@ -196,6 +196,7 @@
     <Compile Include="Controllers\DonorController.cs" />
     <Compile Include="Controllers\ClassificationController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\RewardController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\GenderController.cs" />
     <Compile Include="Controllers\RequestorController.cs" />
