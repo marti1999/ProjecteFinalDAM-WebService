@@ -41,7 +41,7 @@ namespace WSRobaSegonaMa.Controllers
 
         // DELETE: api/rewards/5
         [Route("api/rewards/{id?}")]
-        public HttpResponseMessage Delete(String id)
+        public HttpResponseMessage Delete(int id)
         {
             RewardRepository.DeleteReward(id);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
