@@ -9,15 +9,15 @@ using WSRobaSegonaMa.Models;
 
 namespace WSRobaSegonaMa.Controllers
 {
-	public class OrderController : ApiController
-     {
-         // PUT: api/order
-         [Route("api/order")]
-     public HttpResponseMessage Post([FromBody] Order val)
-     {
-         var orders = OrderRepository.insertOrder(val);
-         HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, orders);
-         return response;
-            }
+    public class OrderController : ApiController
+    {
+        // PUT: api/order
+        [Route("api/order")]
+        public HttpResponseMessage Put([FromBody] Order val)
+        {
+            var orders = OrderRepository.insertOrder(val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, orders);
+            return response;
+        }
     }
 }

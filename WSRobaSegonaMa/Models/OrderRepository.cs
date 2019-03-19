@@ -13,6 +13,7 @@ namespace WSRobaSegonaMa.Models
 
             try
             {
+            
                 dataContext.Orders.Add(o);
                 dataContext.SaveChanges();
 
@@ -20,8 +21,15 @@ namespace WSRobaSegonaMa.Models
                 c.active = false;
 
                 Requestor r = dataContext.Requestors.FirstOrDefault(x => x.Id == o.Requestor.Id);
-                
-                
+
+                r.points += c.Classification.value;
+
+                dataContext.SaveChanges();
+
+
+
+
+
 
                 return o;
 
