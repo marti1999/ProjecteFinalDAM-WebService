@@ -20,8 +20,8 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
-        // PUT: api/rewards/5
-        [Route("api/rewards/{id?}")]
+        // PUT: api/reward/5
+        [Route("api/reward/{id?}")]
         public HttpResponseMessage Put(int id, [FromBody] Reward val)
         {
             var requestors = RewardRepository.UpdateReward(id, val);
@@ -39,8 +39,8 @@ namespace WSRobaSegonaMa.Controllers
         }
 
 
-        // DELETE: api/rewards/5
-        [Route("api/rewards/{id?}")]
+        // DELETE: api/reward/5
+        [Route("api/reward/{id?}")]
         public HttpResponseMessage Delete(int id)
         {
             RewardRepository.DeleteReward(id);
