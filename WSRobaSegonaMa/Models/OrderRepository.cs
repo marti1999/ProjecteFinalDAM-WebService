@@ -17,10 +17,10 @@ namespace WSRobaSegonaMa.Models
                 dataContext.Orders.Add(o);
                 dataContext.SaveChanges();
 
-                Cloth c = dataContext.Clothes.Where(x => x.Id == o.Cloth.Id).FirstOrDefault();
+                Cloth c = dataContext.Clothes.Where(x => x.Id == o.Clothes_Id && x.active == true).FirstOrDefault();
                 c.active = false;
 
-                Requestor r = dataContext.Requestors.FirstOrDefault(x => x.Id == o.Requestor.Id);
+                Requestor r = dataContext.Requestors.FirstOrDefault(x => x.Id == o.Requestor_Id);
 
                 r.points += c.Classification.value;
 
