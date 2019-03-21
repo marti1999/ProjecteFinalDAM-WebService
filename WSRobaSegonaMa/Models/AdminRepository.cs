@@ -24,11 +24,18 @@ namespace WSRobaSegonaMa.Models
             return c;
         }
 
-        public static List<Administrator> SearchAdministratorsByCode(string donorDni)
+        public static List<Administrator> SearchAdministratorsByCode(string adminCode)
         {
             List<Administrator> lc = dataContext.Administrators
-                .Where(x => x.workerCode.Contains(donorDni)).ToList();
+                .Where(x => x.workerCode.Contains(adminCode)).ToList();
             return lc;
+        }
+
+        public static Administrator SearchAdministratorsByEmail(string adminEmail)
+        {
+            Administrator admin = dataContext.Administrators
+                .Where(x => x.email.Equals(adminEmail)).FirstOrDefault();
+            return admin;
         }
 
         public static Administrator InsertAdministrator(Administrator c)
