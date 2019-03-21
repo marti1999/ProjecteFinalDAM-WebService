@@ -93,7 +93,13 @@ namespace WSRobaSegonaMa.Models
 
         public static bool CanLogin(Administrator a)
         {
+
+            
+
+
             List<Administrator> lc = GetAllAdministrators();
+            Administrator a2 = lc.FirstOrDefault();
+            Console.WriteLine(a2.password);
 
             Administrator admin = lc.Where(x => x.password == a.password && x.email == a.email).FirstOrDefault();
             if (admin != null)
