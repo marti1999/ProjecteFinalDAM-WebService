@@ -51,8 +51,8 @@ namespace WSRobaSegonaMa.Controllers
         [Route("api/cloth/{id?}")]
         public HttpResponseMessage Delete(int id)
         {
-            ClothRespository.deleteCloth(id);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            Cloth c = ClothRespository.deleteCloth(id);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, c);
             return response;
         }
 

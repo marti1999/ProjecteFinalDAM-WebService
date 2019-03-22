@@ -67,7 +67,7 @@ namespace WSRobaSegonaMa.Models
             }
         }
 
-        public static void deleteCloth(int id)
+        public static Cloth deleteCloth(int id)
         {
             Cloth c;
 
@@ -77,6 +77,7 @@ namespace WSRobaSegonaMa.Models
                 dc.Clothes.Remove(c);
                 dc.SaveChanges();
             }
+            return new Cloth();;
         }
 
     }
