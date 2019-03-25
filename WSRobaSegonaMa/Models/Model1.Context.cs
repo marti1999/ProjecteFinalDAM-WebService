@@ -18,6 +18,7 @@ namespace WSRobaSegonaMa.Models
         public RobaSegonaMaEntities()
             : base("name=RobaSegonaMaEntities")
         {
+            
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
