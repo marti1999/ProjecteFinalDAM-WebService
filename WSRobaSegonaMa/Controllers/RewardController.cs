@@ -15,8 +15,8 @@ namespace WSRobaSegonaMa.Controllers
         [Route("api/rewards")]
         public HttpResponseMessage Get()
         {
-            var requestors = RewardRepository.GetAllRewards();
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, requestors);
+            var rewards = RewardRepository.GetAllRewards();
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, rewards);
             return response;
         }
 
@@ -24,8 +24,8 @@ namespace WSRobaSegonaMa.Controllers
         [Route("api/reward/{id?}")]
         public HttpResponseMessage Put(int id, [FromBody] Reward val)
         {
-            var requestors = RewardRepository.UpdateReward(id, val);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, requestors);
+            var reward = RewardRepository.UpdateReward(id, val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, reward);
             return response;
         }
 
@@ -33,8 +33,8 @@ namespace WSRobaSegonaMa.Controllers
         [Route("api/rewards")]
         public HttpResponseMessage Post([FromBody] Reward val)
         {
-            var requestors = RewardRepository.InsertReward(val);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, requestors);
+            var rewards = RewardRepository.InsertReward(val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, rewards);
             return response;
         }
 
