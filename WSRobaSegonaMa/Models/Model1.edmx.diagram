@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="924a1de3f734453ea9d604e5b82ae1b3" Name="Diagram1">
+      <Diagram DiagramId="924a1de3f734453ea9d604e5b82ae1b3" Name="Diagram1" ZoomLevel="63">
         <EntityTypeShape EntityType="RobaSegonaMaModel.Administrator" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Announcement" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Classification" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Cloth" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.ClothesRequest" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RobaSegonaMaModel.Color" Width="1.5" PointX="3.75" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RobaSegonaMaModel.Color" Width="1.5" PointX="0.75" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Donor" Width="1.5" PointX="6" PointY="14" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Gender" Width="1.5" PointX="3.75" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="RobaSegonaMaModel.Language" Width="1.5" PointX="3.75" PointY="18.5" IsExpanded="true" />

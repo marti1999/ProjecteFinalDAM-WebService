@@ -25,7 +25,7 @@ namespace WSRobaSegonaMa
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-            //config.Filters.Add(new RequireHttpsAttribute());
+            config.Filters.Add(new RequireHttpsAttribute());
 
 
 
