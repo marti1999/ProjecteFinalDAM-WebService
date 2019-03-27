@@ -68,8 +68,8 @@ namespace WSRobaSegonaMa.Controllers
         [Route("api/donor/{id?}")]
         public HttpResponseMessage Delete(String id)
         {
-            DonorRepository.DeleteDonor(id);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            Donor d = DonorRepository.DeleteDonor(id);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, d);
             return response;
         }
 
