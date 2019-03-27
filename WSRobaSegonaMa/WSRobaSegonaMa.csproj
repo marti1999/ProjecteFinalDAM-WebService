@@ -19,9 +19,12 @@
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort>44362</IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
-    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
-    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <IISExpressAnonymousAuthentication>
+    </IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>
+    </IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>
+    </IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -280,6 +283,9 @@
     <Compile Include="Models\ColorRepository.cs" />
     <Compile Include="Models\GenderRepository.cs" />
     <Compile Include="Models\RobaSegonaMaEntities2.cs" />
+    <Compile Include="Models\SenseRel\GenderSenseRel.cs" />
+    <Compile Include="Models\SenseRel\ColorsSenseRel.cs" />
+    <Compile Include="Models\SenseRel\SizeSenseRel.cs" />
     <Compile Include="Models\SenseRel\LanguageSenseRel.cs" />
     <Compile Include="Models\SenseRel\MaxClaimsSenseRel.cs" />
     <Compile Include="Models\SenseRel\ClassificationSenseRel.cs" />
