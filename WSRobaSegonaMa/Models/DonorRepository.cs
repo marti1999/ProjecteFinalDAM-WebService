@@ -76,7 +76,7 @@ namespace WSRobaSegonaMa.Models
         }
 
 
-        public static void DeleteDonor(String id)
+        public static Donor DeleteDonor(String id)
         {
             Donor c;
             if (Utils.validInt(id))
@@ -94,6 +94,8 @@ namespace WSRobaSegonaMa.Models
                 dataContext.Donors.Remove(c);
                 dataContext.SaveChanges();
             }
+
+            return new Donor();
         }
 
         public static bool UpdatePoints(Donor newDonor)

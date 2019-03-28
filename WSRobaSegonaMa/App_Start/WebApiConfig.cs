@@ -26,6 +26,7 @@ namespace WSRobaSegonaMa
                 defaults: new { id = RouteParameter.Optional }
             );
             config.Filters.Add(new RequireHttpsAttribute());
+            //https://www.c-sharpcorner.com/article/how-to-enable-https-in-asp-net-web-api/
 
 
 
