@@ -20,8 +20,8 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
-        // PUT: api/reward/5
-        [Route("api/reward/{id?}")]
+        // PUT: api/reward/update/5
+        [Route("api/reward/update/{id?}")]
         public HttpResponseMessage Put(int id, [FromBody] Reward val)
         {
             var reward = RewardRepository.UpdateReward(id, val);

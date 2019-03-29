@@ -21,11 +21,17 @@ namespace WSRobaSegonaMa.Models
         {
             try
             {
-                Reward c0 = dataContext.Rewards.Where(x => x.Id == id).SingleOrDefault();
+                Reward c0 = dataContext.Rewards.Where(x => x.Id == id).FirstOrDefault();
                 if (val.Id != null) c0.Id = val.Id;
                 if (val.active != null) c0.active = val.active;
                 if (val.neededPoints != null) c0.neededPoints = val.neededPoints;
-                if (val.RewardInfoLangs.Any()) val.RewardInfoLangs = UpdateInfoRewardFromList(val.RewardInfoLangs.ToList());
+
+                List<RewardInfoLang> rewardInfoLangs = val.RewardInfoLangs.ToList();
+                foreach (var info in rewardInfoLangs)
+                {
+                    RewardInfoLangRepository.UpdateRewardInfoLang(info.Id, info);
+                }
+                //if (val.RewardInfoLangs.Any()) val.RewardInfoLangs = UpdateInfoRewardFromList(val.RewardInfoLangs.ToList());
 
                 dataContext.SaveChanges();
                 return GetReward(id);
@@ -44,6 +50,7 @@ namespace WSRobaSegonaMa.Models
                 if (!info.title.Equals(""))
                 {
                     c0.title = info.title;
+                    c0.description = info.description;
                 }
             }
 
@@ -76,6 +83,11 @@ namespace WSRobaSegonaMa.Models
 
             if (c != null)
             {
+                List<RewardInfoLang> rewardInfoLangs = c.RewardInfoLangs.ToList();
+                foreach (var info in rewardInfoLangs)
+                {
+                    dataContext.RewardInfoLangs.Remove(info);
+                }
                 dataContext.Rewards.Remove(c);
                 dataContext.SaveChanges();
             }
