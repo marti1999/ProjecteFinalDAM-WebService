@@ -25,13 +25,15 @@ namespace WSRobaSegonaMa.Models
                 if (val.Id != null) c0.Id = val.Id;
                 if (val.active != null) c0.active = val.active;
                 if (val.neededPoints != null) c0.neededPoints = val.neededPoints;
+                if (val.neededPoints != null) c0.neededPoints = val.neededPoints;
+                //if (val.RewardInfoLangs.Any()) c0.RewardInfoLangs = val.RewardInfoLangs;
 
-                List<RewardInfoLang> rewardInfoLangs = val.RewardInfoLangs.ToList();
-                foreach (var info in rewardInfoLangs)
-                {
-                    RewardInfoLangRepository.UpdateRewardInfoLang(info.Id, info);
-                }
-                //if (val.RewardInfoLangs.Any()) val.RewardInfoLangs = UpdateInfoRewardFromList(val.RewardInfoLangs.ToList());
+                //List<RewardInfoLang> rewardInfoLangs = val.RewardInfoLangs.ToList();
+                //foreach (var info in rewardInfoLangs)
+                //{
+                //    RewardInfoLangRepository.UpdateRewardInfoLang(info.Id, info);
+                //}
+                if (val.RewardInfoLangs.Any()) val.RewardInfoLangs = UpdateInfoRewardFromList(val.RewardInfoLangs.ToList());
 
                 dataContext.SaveChanges();
                 return GetReward(id);
