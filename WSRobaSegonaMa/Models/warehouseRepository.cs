@@ -28,6 +28,13 @@ namespace WSRobaSegonaMa.Models
 
             Warehouse w1 = dc.Warehouses.Where(x => x.Id == id).FirstOrDefault();
             w1.street = w.street;
+            w1.city = w.city;
+            w1.number = w.number;
+            w1.postalCode = w.postalCode;
+            w1.name = w.name;
+
+
+           
             dc.SaveChanges();
             return w1;
         }
