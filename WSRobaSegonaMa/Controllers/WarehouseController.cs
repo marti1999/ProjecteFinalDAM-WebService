@@ -20,7 +20,27 @@ namespace WSRobaSegonaMa.Controllers
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, warehouse);
             return response;
         }
-         
+
+        //POST: api/warehouse
+        [Route("api/warehouse")]
+        public HttpResponseMessage Post([FromBody] Warehouse val)
+        {
+
+            var warehouse = warehouseRepository.addWarehouse(val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, warehouse);
+            return response;
+        }
+
+        //PUT: api/warehouse
+        [Route("api/warehouse/{id?}")]
+        public HttpResponseMessage Put(int id, [FromBody] Warehouse val)
+        {
+
+            var warehouse = warehouseRepository.updateWarehuse(id, val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, warehouse);
+            return response;
+        }
+
 
 
     }
