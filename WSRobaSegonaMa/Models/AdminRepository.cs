@@ -42,13 +42,16 @@ namespace WSRobaSegonaMa.Models
         {
             try
             {
+                c.Language = null;
                 dataContext.Administrators.Add(c);
+              
                 dataContext.SaveChanges();
                 return GetAdministrator(c.Id);
             }
             catch (Exception e)
             {
-                return null;
+               Console.WriteLine(e.ToString());
+               return null;
             }
         }
 
