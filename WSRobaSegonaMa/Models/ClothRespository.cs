@@ -32,6 +32,9 @@ namespace WSRobaSegonaMa.Models
                 dc.Clothes.Add(c);
               
                 dc.SaveChanges();
+
+                
+
                 return c; 
             }
             catch (Exception e)
