@@ -103,10 +103,6 @@ namespace WSRobaSegonaMa.Models
 
         public static bool CanLogin(Administrator a)
         {
-
-            
-
-
             List<Administrator> lc = GetAllAdministrators();
             Administrator a2 = lc.FirstOrDefault();
             Console.WriteLine(a2.password);
@@ -118,6 +114,14 @@ namespace WSRobaSegonaMa.Models
             }
             return false;
         }
+
+        public static void SetAdminLang(int id, string lang)
+        {
+            Administrator a = GetAllAdministrators().Where(x => x.Id.Equals(id)).FirstOrDefault();
+            a.Language_Id = Utils.getIdLang(lang);
+            dataContext.SaveChanges();
+        }
+
 
     }
 }

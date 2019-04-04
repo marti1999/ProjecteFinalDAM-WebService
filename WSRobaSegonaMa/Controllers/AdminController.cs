@@ -64,6 +64,14 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
+        [Route("api/administrator/updlang/{lang}")]
+        public HttpResponseMessage Put(int id, [FromBody] string lang)
+        {
+            AdminRepository.SetAdminLang(id,lang);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            return response;
+        }
+
         // POST: api/administrator/login
         [Route("api/administrator/login")]
         public HttpResponseMessage Login([FromBody] Administrator val)
