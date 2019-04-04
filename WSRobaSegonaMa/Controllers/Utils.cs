@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
+using WSRobaSegonaMa.Models;
 
 namespace WSRobaSegonaMa.Controllers
 {
@@ -22,5 +24,15 @@ namespace WSRobaSegonaMa.Controllers
                 return validInt;
             }
         }
+        public static int getIdLang(string lang)
+        {
+
+            Language l = LanguageRepository.SearchLanguagesByCode(lang).FirstOrDefault();
+
+
+            return l.Id;
+        }
     }
+
+
 }

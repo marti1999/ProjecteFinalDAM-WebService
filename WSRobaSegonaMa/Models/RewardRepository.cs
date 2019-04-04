@@ -9,8 +9,6 @@ namespace WSRobaSegonaMa.Models
     {
         private static RobaSegonaMaEntities dataContext = new RobaSegonaMaEntities();
 
-
-
         public static List<Reward> GetAllRewards()
         {
             List<Reward> lc = dataContext.Rewards.ToList();
