@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -64,11 +65,37 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
-        [Route("api/administrator/updlang/{lang}")]
-        public HttpResponseMessage Put(int id, [FromBody] string lang)
+        // POST: api/administrator/updlang/
+        [Route("api/administrator/updlang")]
+        public HttpResponseMessage PutLang([FromBody] List<object> listObj)
         {
-            AdminRepository.SetAdminLang(id,lang);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            bool a = false;
+            int id = 0;
+            string lang = "";
+            foreach (var valor in listObj)
+            {
+                if (a.Equals(false))
+                {
+                    id = (int)valor;
+                    a = true;
+                }
+                else
+                {
+                    lang = (string) valor;
+                }
+            }
+
+            HttpResponseMessage response;
+            if (!lang.Equals("") && id != 0)
+            {
+                AdminRepository.SetAdminLang(id, lang);
+                response = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            else
+            {
+                response = Request.CreateResponse(HttpStatusCode.Conflict);
+            }
+
             return response;
         }
 
