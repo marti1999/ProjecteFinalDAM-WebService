@@ -75,7 +75,7 @@ namespace WSRobaSegonaMa.Models
             Cloth c;
 
             c = dc.Clothes.Where(x => x.Id == id).FirstOrDefault();
-            if (c != null) { }
+            if (c != null) { } 
             {
                 dc.Clothes.Remove(c);
                 dc.SaveChanges();
