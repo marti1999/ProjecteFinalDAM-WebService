@@ -65,35 +65,30 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
-        // POST: api/administrator/updlang/
+        // PUT: api/administrator/updlang/
         [Route("api/administrator/updlang")]
-        public HttpResponseMessage PutLang([FromBody] List<object> listObj)
+        public HttpResponseMessage PutLang([FromBody] String idAndLang)
         {
-            bool a = false;
+
             int id = 0;
             string lang = "";
-            foreach (var valor in listObj)
-            {
-                if (a.Equals(false))
-                {
-                    id = (int)valor;
-                    a = true;
-                }
-                else
-                {
-                    lang = (string) valor;
-                }
-            }
+
+            String[] values = idAndLang.Split('-');
+
+            id = int.Parse(values[0]);
+            lang = values[1];
 
             HttpResponseMessage response;
             if (!lang.Equals("") && id != 0)
             {
                 AdminRepository.SetAdminLang(id, lang);
-                response = Request.CreateResponse(HttpStatusCode.OK);
+                response = Request.CreateResponse(HttpStatusCode.OK, true);
             }
             else
             {
-                response = Request.CreateResponse(HttpStatusCode.Conflict);
+                //response = Request.CreateResponse(HttpStatusCode.Conflict, false);
+
+                response = null;
             }
 
             return response;
