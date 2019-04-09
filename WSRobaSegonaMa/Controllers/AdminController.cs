@@ -96,7 +96,7 @@ namespace WSRobaSegonaMa.Controllers
 
         // POST: api/administrator/login
         [Route("api/administrator/login")]
-        public HttpResponseMessage Login([FromBody] Administrator val)
+        public HttpResponseMessage PostLogin([FromBody] Administrator val)
         {
             var canLogin = AdminRepository.CanLogin(val);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, canLogin);
