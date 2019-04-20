@@ -126,7 +126,7 @@ namespace WSRobaSegonaMa.Models
         public static string CanLoginBoth(Donor a)
         {
             List<Donor> lc = GetAllDonors();
-            Donor donor = lc.Where(x => x.password == a.password && x.email == a.email).FirstOrDefault();
+                        Donor donor = lc.Where(x => x.password == a.password && x.email == a.email).FirstOrDefault();
 
             List<Requestor> lr = RequestorRepository.GetAllRequestors();
             Requestor requestor = lr.Where(x => x.password == a.password && x.email == a.email).FirstOrDefault();
@@ -136,8 +136,7 @@ namespace WSRobaSegonaMa.Models
                 if (donor != null)
                 {
                     return "true-" + "Donor";
-                }
-                else
+                } else
                 {
                     return "true-" + "Requestor";
                 }
