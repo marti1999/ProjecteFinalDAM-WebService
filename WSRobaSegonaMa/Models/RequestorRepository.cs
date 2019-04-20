@@ -14,8 +14,18 @@ namespace WSRobaSegonaMa.Models
 
         public static List<Requestor> GetAllRequestors()
         {
-            List<Requestor> lc = dataContext.Requestors.ToList();
-            return lc;
+
+            try
+            {
+                List<Requestor> lc = dataContext.Requestors.ToList();
+                return lc;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+            
         }
 
         public static Requestor GetRequestor(int requestorID)

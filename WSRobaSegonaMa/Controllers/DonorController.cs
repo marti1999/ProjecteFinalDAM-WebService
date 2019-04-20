@@ -82,9 +82,18 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
+        // POST: api/donor/loginBoth
+        [Route("api/donor/loginBoth")]
+        public HttpResponseMessage LoginBoth([FromBody] Donor val)
+        {
+            var canLogin = DonorRepository.CanLoginBoth(val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, canLogin);
+            return response;
+        }
+
 
         // POST: api/donor/updPoints
-        [Route("api/donor/login")]
+        [Route("api/donor/updPoints")]
         public HttpResponseMessage UpdatePoints([FromBody] Donor val)
         {
             var canDo = DonorRepository.UpdatePoints(val);
