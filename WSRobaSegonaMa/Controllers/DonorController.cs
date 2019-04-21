@@ -91,6 +91,14 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
+        [Route("api/donor/isUserDuplicated")]
+        public HttpResponseMessage isUserDuplicated([FromBody] Donor val)
+        {
+            var canLogin = DonorRepository.isUserDuplicated(val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, canLogin);
+            return response;
+        }
+
 
         // POST: api/donor/updPoints
         [Route("api/donor/updPoints")]

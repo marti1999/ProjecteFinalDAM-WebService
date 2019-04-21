@@ -145,5 +145,22 @@ namespace WSRobaSegonaMa.Models
             return "false";
         }
 
+
+        public static Boolean isUserDuplicated(Donor a)
+        {
+            List<Donor> lc = GetAllDonors();
+            Donor donor = lc.Where(x =>x.email == a.email && x.dni.ToLower().Equals(a.dni.ToLower())).FirstOrDefault();
+
+            List<Requestor> lr = RequestorRepository.GetAllRequestors();
+            Requestor requestor = lr.Where(x => x.email == a.email && x.dni.ToLower().Equals(a.dni.ToLower())).FirstOrDefault();
+
+            if (donor != null || requestor != null)
+            {
+                return true;
+
+            }
+            return false;
+        }
+
     }
 }
