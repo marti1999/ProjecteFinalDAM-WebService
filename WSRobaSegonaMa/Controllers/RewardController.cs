@@ -29,6 +29,16 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
+        //PUT: api/reward/claim
+        [Route("api/reward/claim/")]
+        public HttpResponseMessage PutClaimReward(int rewardId, [FromBody] int donorId)
+        {
+            var reward = RewardRepository.claimRewardByDonor(rewardId, donorId);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, reward);
+            return response;
+        }
+
+
         // POST: api/rewards
         [Route("api/rewards")]
         public HttpResponseMessage Post([FromBody] Reward val)

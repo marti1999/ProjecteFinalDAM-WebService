@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 
 namespace WSRobaSegonaMa.Models
@@ -13,6 +14,27 @@ namespace WSRobaSegonaMa.Models
         {
             List<Reward> lc = dataContext.Rewards.ToList();
             return lc;
+        }
+
+        public static bool claimRewardByDonor(int rewardId, int donorId)
+        {
+            Reward r = dataContext.Rewards.Where(x => x.Id == rewardId).FirstOrDefault();
+            Donor d = dataContext.Donors.Where(x => x.Id == donorId).FirstOrDefault();
+            try
+            {
+                r.Donors.Add(d);
+                d.Rewards.Add(r);
+
+                return true;
+            }
+
+            catch (Exception e)
+            {
+                return false;
+            }
+
+
+
         }
 
         public static Reward UpdateReward(int id, Reward val)
