@@ -135,10 +135,10 @@ namespace WSRobaSegonaMa.Models
             {
                 if (donor != null)
                 {
-                    return "true-" + "Donor";
+                    return "true-" + "Donor-"+donor.Id;
                 } else
                 {
-                    return "true-" + "Requestor";
+                    return "true-" + "Requestor"+requestor.Id;
                 }
 
             }
