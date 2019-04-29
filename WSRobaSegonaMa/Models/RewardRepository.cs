@@ -16,10 +16,26 @@ namespace WSRobaSegonaMa.Models
             return lc;
         }
 
+        public static List<Reward> getAvailableRewardsDonor(int donorId)
+        {
+            List<Reward> lc = dataContext.Rewards.ToList();
+            List<Reward> lc2 = new List<Reward>();
+            foreach (Reward reward in lc)
+            {
+                Donor d = reward.Donors.Where(x => x.Id == donorId).FirstOrDefault();
+                if (d == null)
+                {
+                    lc2.Add(reward);
+                }
+            }
+            return lc2;
+        }
+
         public static bool claimRewardByDonor(int rewardId, int donorId)
         {
             Reward r = dataContext.Rewards.Where(x => x.Id == rewardId).FirstOrDefault();
             Donor d = dataContext.Donors.Where(x => x.Id == donorId).FirstOrDefault();
+
             if (r.neededPoints > d.points)
             {
                 return false;
@@ -28,10 +44,8 @@ namespace WSRobaSegonaMa.Models
             {
                 r.Donors.Add(d);
                 d.Rewards.Add(r);
-
                 d.points -= r.neededPoints;
                 dataContext.SaveChanges();
-
                 return true;
             }
 

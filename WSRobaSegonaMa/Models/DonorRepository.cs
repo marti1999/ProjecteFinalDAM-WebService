@@ -135,10 +135,10 @@ namespace WSRobaSegonaMa.Models
             {
                 if (donor != null)
                 {
-                    return "true-" + "Donor-" + donor.Id;
+                    return "true-" + "Donor-"+donor.Id;
                 } else
                 {
-                    return "true-" + "Requestor-" + requestor.Id;
+                    return "true-" + "Requestor-"+requestor.Id;
                 }
 
             }
@@ -149,10 +149,10 @@ namespace WSRobaSegonaMa.Models
         public static Boolean isUserDuplicated(Donor a)
         {
             List<Donor> lc = GetAllDonors();
-            Donor donor = lc.Where(x =>x.email == a.email && x.dni.ToLower().Equals(a.dni.ToLower())).FirstOrDefault();
+            Donor donor = lc.Where(x =>x.email == a.email || x.dni.ToLower().Equals(a.dni.ToLower())).FirstOrDefault();
 
             List<Requestor> lr = RequestorRepository.GetAllRequestors();
-            Requestor requestor = lr.Where(x => x.email == a.email && x.dni.ToLower().Equals(a.dni.ToLower())).FirstOrDefault();
+            Requestor requestor = lr.Where(x => x.email == a.email || x.dni.ToLower().Equals(a.dni.ToLower())).FirstOrDefault();
 
             if (donor != null || requestor != null)
             {

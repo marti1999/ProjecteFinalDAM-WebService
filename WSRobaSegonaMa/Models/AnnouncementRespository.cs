@@ -17,6 +17,12 @@ namespace WSRobaSegonaMa.Models
             return lc;
         }
 
+        public static List<Announcement> getAllAnnouncementsByUserType(string userType)
+        {
+            List<Announcement> lc = dc.Announcements.Where(x => ((x.recipient.ToLower().Contains(userType.ToLower()) || (x.recipient.ToLower().Contains("everyone"))) && x.language.Contains("ngl"))).ToList();
+            return lc;
+        }
+
         public static Announcement getAnnouncement(int id)
         {
             Announcement c = dc.Announcements.Where(x => x.Id == id).FirstOrDefault();
