@@ -30,10 +30,10 @@ namespace WSRobaSegonaMa.Controllers
         }
 
         //PUT: api/reward/claim
-        [Route("api/reward/claim/")]
-        public HttpResponseMessage PutClaimReward(int rewardId, [FromBody] int donorId)
+        [Route("api/reward/claim/{id?}")]
+        public HttpResponseMessage PutClaimReward(int id, [FromBody] int donorId)
         {
-            var reward = RewardRepository.claimRewardByDonor(rewardId, donorId);
+            var reward = RewardRepository.claimRewardByDonor(id, donorId);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, reward);
             return response;
         }

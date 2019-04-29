@@ -20,10 +20,17 @@ namespace WSRobaSegonaMa.Models
         {
             Reward r = dataContext.Rewards.Where(x => x.Id == rewardId).FirstOrDefault();
             Donor d = dataContext.Donors.Where(x => x.Id == donorId).FirstOrDefault();
+            if (r.neededPoints > d.points)
+            {
+                return false;
+            }
             try
             {
                 r.Donors.Add(d);
                 d.Rewards.Add(r);
+
+                d.points -= r.neededPoints;
+                dataContext.SaveChanges();
 
                 return true;
             }
