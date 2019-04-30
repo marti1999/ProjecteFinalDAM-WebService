@@ -36,6 +36,27 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
+        //POST: api/donor/a@a.a
+        [Route("api/donor/question")]
+        public HttpResponseMessage PostBothQuestionsByEmail([FromBody]string email)
+        {
+            var question = DonorRepository.getSecurityQuestionByMail(email);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, question);
+            return response;
+        }
+
+        //POST: api/donor/a@a.a
+        [Route("api/donor/requestNewPassword")]
+        public HttpResponseMessage PostRequestNewPassword([FromBody]string text)
+        {
+            string[] arr = text.Split('-');
+            string email = arr[0];
+            string answer= arr[1];
+            var question = DonorRepository.sendNewPassword(email, answer);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, question);
+            return response;
+        }
+
         // GET: api/donor/5
         [Route("api/donor/{id?}")]
         public HttpResponseMessage Get(int id)

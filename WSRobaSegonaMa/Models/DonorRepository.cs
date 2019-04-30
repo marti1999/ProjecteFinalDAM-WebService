@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using WSRobaSegonaMa.Controllers;
 
 namespace WSRobaSegonaMa.Models
@@ -64,7 +66,7 @@ namespace WSRobaSegonaMa.Models
                 if (c.dni != null) c0.dni = c.dni;
                 if (c.points != null) c0.points = c.points;
 
-                
+
 
                 dataContext.SaveChanges();
                 return GetDonor(id);
@@ -126,7 +128,7 @@ namespace WSRobaSegonaMa.Models
         public static string CanLoginBoth(Donor a)
         {
             List<Donor> lc = GetAllDonors();
-                        Donor donor = lc.Where(x => x.password == a.password && x.email == a.email).FirstOrDefault();
+            Donor donor = lc.Where(x => x.password == a.password && x.email == a.email).FirstOrDefault();
 
             List<Requestor> lr = RequestorRepository.GetAllRequestors();
             Requestor requestor = lr.Where(x => x.password == a.password && x.email == a.email).FirstOrDefault();
@@ -135,21 +137,133 @@ namespace WSRobaSegonaMa.Models
             {
                 if (donor != null)
                 {
-                    return "true-" + "Donor-"+donor.Id;
-                } else
+                    return "true-" + "Donor-" + donor.Id;
+                }
+                else
                 {
-                    return "true-" + "Requestor-"+requestor.Id;
+                    return "true-" + "Requestor-" + requestor.Id;
                 }
 
             }
             return "false";
         }
 
+        public static string getSecurityQuestionByMail(string email)
+        {
+            List<Donor> lc = GetAllDonors();
+            Donor donor = lc.Where(x => x.email == email).FirstOrDefault();
+
+            List<Requestor> lr = RequestorRepository.GetAllRequestors();
+            Requestor requestor = lr.Where(x => x.email == email).FirstOrDefault();
+
+            if (donor != null || requestor != null)
+            {
+                if (donor != null)
+                {
+                    return donor.securityQuestion;
+                }
+                else
+                {
+                    return requestor.securityQuestion;
+                }
+
+            }
+            return null;
+        }
+
+        public static string sendNewPassword(string email, string answer)
+        {
+            List<Donor> lc = GetAllDonors();
+            Donor donor = lc.Where(x => x.email == email && x.securityAnswer.Equals(answer)).FirstOrDefault();
+
+            List<Requestor> lr = RequestorRepository.GetAllRequestors();
+            Requestor requestor = lr.Where(x => x.email == email && x.securityAnswer.Equals(answer)).FirstOrDefault();
+
+            if (donor != null || requestor != null)
+            {
+                string word = "";
+
+                for (int i = 0; i < 5; i++)
+                {
+                    word += RandomLetter();
+                }
+
+
+
+                var data = Encoding.UTF8.GetBytes(word);
+
+
+                byte[] hash;
+
+                using (SHA512 sha = new SHA512Managed())
+                {
+                    hash = sha.ComputeHash(data);
+                }
+
+                string hashString = Encoding.Default.GetString(hash);
+
+                hashString = stringToHex(hashString);
+                hashString = hashString.ToLower();
+
+
+
+
+                if (donor != null)
+                {
+                    donor.password = hashString;
+                    dataContext.SaveChanges();
+
+                    return "true-" + word;
+                }
+                else
+                {
+                    requestor.password = hashString;
+                    dataContext.SaveChanges();
+                    return "true-" + word;
+                }
+
+            }
+            return "false-Incorrect answer";
+        }
+
+        public static string stringToHex(String text)
+        {
+
+
+            byte[] ba = Encoding.Default.GetBytes(text);
+            var hexString = BitConverter.ToString(ba);
+            hexString = hexString.Replace("-", "");
+
+
+            return hexString;
+        }
+
+        public static string RandomLetter()
+
+        {
+
+            string sLetter = " ";
+
+            string[] letters = new string[26]  { " a", " b", " c", " d", " e", " f", " g", " h", " i", " j", " k", " l", " m", " n",
+
+               " o", " p", " q", " r", " s", " t", " u", " v", " w", " x" , " y", " z"};
+
+            Random rnd = new Random();
+
+            int newRandom = rnd.Next(1, 26);
+
+            sLetter = letters[newRandom];
+
+            return sLetter;
+
+        }
+
+
 
         public static Boolean isUserDuplicated(Donor a)
         {
             List<Donor> lc = GetAllDonors();
-            Donor donor = lc.Where(x =>x.email == a.email || x.dni.ToLower().Equals(a.dni.ToLower())).FirstOrDefault();
+            Donor donor = lc.Where(x => x.email == a.email || x.dni.ToLower().Equals(a.dni.ToLower())).FirstOrDefault();
 
             List<Requestor> lr = RequestorRepository.GetAllRequestors();
             Requestor requestor = lr.Where(x => x.email == a.email || x.dni.ToLower().Equals(a.dni.ToLower())).FirstOrDefault();
