@@ -211,14 +211,17 @@ namespace WSRobaSegonaMa.Models
                 if (donor != null)
                 {
                     donor.password = hashString;
-                    dataContext.SaveChanges();
+                    UpdateDonor(donor.Id, donor);
+                    //dataContext.SaveChanges();
 
                     return "true-" + word;
                 }
                 else
                 {
+
                     requestor.password = hashString;
-                    dataContext.SaveChanges();
+                    RequestorRepository.UpdateRequestor(requestor.Id, requestor);
+                    //dataContext.SaveChanges();
                     return "true-" + word;
                 }
 
@@ -241,12 +244,15 @@ namespace WSRobaSegonaMa.Models
         public static string RandomLetter()
 
         {
+            System.Threading.Thread.Sleep(50);
+
+
 
             string sLetter = " ";
 
-            string[] letters = new string[26]  { " a", " b", " c", " d", " e", " f", " g", " h", " i", " j", " k", " l", " m", " n",
+            string[] letters = new string[26]  { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
 
-               " o", " p", " q", " r", " s", " t", " u", " v", " w", " x" , " y", " z"};
+               "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
             Random rnd = new Random();
 
