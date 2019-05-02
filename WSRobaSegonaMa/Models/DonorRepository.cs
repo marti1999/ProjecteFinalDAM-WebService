@@ -35,6 +35,15 @@ namespace WSRobaSegonaMa.Models
         {
             try
             {
+                if (c.ammountGiven == null)
+                {
+                    c.ammountGiven = 0;
+                }
+
+                if (c.points == null)
+                {
+                    c.points = 0;
+                }
                 dataContext.Donors.Add(c);
                 dataContext.SaveChanges();
                 return GetDonor(c.Id);
