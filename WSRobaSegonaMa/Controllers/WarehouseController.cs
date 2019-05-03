@@ -31,6 +31,18 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
+        //POST api/warehouse/byCloth
+        [Route("api/warehouse/byCloth")]
+        public HttpResponseMessage Post([FromBody] Cloth val)
+        {
+
+            var warehouse = warehouseRepository.getWarehousesByCloth(val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, warehouse);
+            return response;
+        }
+
+
+
         //PUT: api/warehouse
         [Route("api/warehouse/{id?}")]
         public HttpResponseMessage Put(int id, [FromBody] Warehouse val)
