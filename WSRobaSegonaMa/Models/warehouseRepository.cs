@@ -38,5 +38,26 @@ namespace WSRobaSegonaMa.Models
             dc.SaveChanges();
             return w1;
         }
+
+        public static List<Warehouse> getWarehousesByCloth(Cloth c)
+        {
+            List<Warehouse> lw = null;
+
+            List<Cloth> lc = null;
+            lc = dc.Clothes.Where(x => x.Size_Id == c.Size_Id && x.Color_Id == c.Color_Id && x.Classification_Id == c.Classification_Id && c.Gender_Id == x.Gender_Id).ToList();
+
+            foreach (Cloth cloth in lc)
+            {
+                if (!lw.Contains(cloth.Warehouse))
+                {
+                    lw.Add(cloth.Warehouse);
+                }
+            }
+
+
+
+
+            return lw;
+        }
     }
 }
