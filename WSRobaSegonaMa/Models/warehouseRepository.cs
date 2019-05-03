@@ -12,6 +12,9 @@ namespace WSRobaSegonaMa.Models
         public static List<Warehouse> GetAllWarehouses()
         {
             List<Warehouse> lc = dc.Warehouses.ToList();
+            lc = lc.OrderBy(x => x.city).ToList();
+            
+
             return lc;
         }
 
@@ -54,6 +57,10 @@ namespace WSRobaSegonaMa.Models
                 }
             }
 
+            if (lw != null)
+            {
+                lw = lw.OrderBy(x => x.city).ToList();
+                            }
 
 
 
