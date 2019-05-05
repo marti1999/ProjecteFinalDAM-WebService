@@ -22,5 +22,12 @@ namespace WSRobaSegonaMa.Models
             Color c = dataContext.Colors.Where(x => x.colorCode.Equals(code)).FirstOrDefault();
             return c;
         }
+
+
+        public static Color GetColor(int colorId)
+        {
+            Color c = dataContext.Colors.Where(x => x.Id == colorId).SingleOrDefault();
+            return c;
+        }
     }
 }

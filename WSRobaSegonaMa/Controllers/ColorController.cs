@@ -19,5 +19,13 @@ namespace WSRobaSegonaMa.Controllers
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, colors);
             return response;
         }
+        // GET: api/color/25
+        [Route("api/color/{id}")]
+        public HttpResponseMessage GetColor(int id)
+        {
+            var size = ColorRepository.GetColor(id);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, size);
+            return response;
+        }
     }
 }

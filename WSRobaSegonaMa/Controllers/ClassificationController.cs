@@ -29,5 +29,15 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
+
+        // GET: api/classification/25
+        [Route("api/classification/{id}")]
+        public HttpResponseMessage GetClassifications(int id)
+        {
+            var size = ClassificationRepository.GetClassification(id);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, size);
+            return response;
+        }
+
     }
 }

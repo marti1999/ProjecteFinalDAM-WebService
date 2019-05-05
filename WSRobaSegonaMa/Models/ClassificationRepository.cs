@@ -37,5 +37,12 @@ namespace WSRobaSegonaMa.Models
 
             return lc;
         }
+
+
+        public static Classification GetClassification(int classificationId)
+        {
+            Classification c = dataContext.Classifications.Where(x => x.Id == classificationId).SingleOrDefault();
+            return c;
+        }
     }
 }

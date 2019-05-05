@@ -20,7 +20,17 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
-        
+
+        // GET: api/size/25
+        [Route("api/size/{id}")]
+        public HttpResponseMessage GetSize(int id)
+        {
+            var size = SizeRepository.GetSize(id);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, size);
+            return response;
+        }
+
+
 
     }
 }

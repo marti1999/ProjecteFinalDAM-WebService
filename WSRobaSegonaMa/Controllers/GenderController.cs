@@ -30,6 +30,15 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
+        // GET: api/gender/25
+        [Route("api/gender/{id}")]
+        public HttpResponseMessage GetGender(int id)
+        {
+            var size = GenderRepository.GetGender(id);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, size);
+            return response;
+        }
+
 
 
     }

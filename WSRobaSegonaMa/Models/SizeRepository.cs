@@ -15,6 +15,13 @@ namespace WSRobaSegonaMa.Models
             return lc;
         }
 
-        
+
+        public static Size GetSize(int sizeId)
+        {
+            Size c = dataContext.Sizes.Where(x => x.Id == sizeId).SingleOrDefault();
+            return c;
+        }
+
+
     }
 }
