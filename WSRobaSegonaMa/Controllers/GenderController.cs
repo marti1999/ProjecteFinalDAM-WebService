@@ -31,8 +31,8 @@ namespace WSRobaSegonaMa.Controllers
         }
 
         // GET: api/gender/25
-        [Route("api/gender/{id}")]
-        public HttpResponseMessage GetGender(int id)
+        [Route("api/gender")]
+        public HttpResponseMessage PostGender([FromBody]int id)
         {
             var size = GenderRepository.GetGender(id);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, size);

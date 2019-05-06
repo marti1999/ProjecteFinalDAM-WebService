@@ -30,6 +30,15 @@ namespace WSRobaSegonaMa.Controllers
         }
 
 
+        [Route("api/classification")]
+        public HttpResponseMessage PostClassificationById2([FromBody]int id)
+        {
+            var classifications = ClassificationRepository.GetClassification(id);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, classifications);
+            return response;
+        }
+
+
         // GET: api/classifications/en
         [Route("api/classifications/{lang}")]
         public HttpResponseMessage GetClassificationsCat(string lang)
@@ -40,14 +49,7 @@ namespace WSRobaSegonaMa.Controllers
         }
 
 
-        // GET: api/classification/25
-        [Route("api/a/{id}")]
-        public HttpResponseMessage GetClassifications(int id)
-        {
-            var size = ClassificationRepository.GetClassification(id);
-            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, size);
-            return response;
-        }
+        
 
     }
 }

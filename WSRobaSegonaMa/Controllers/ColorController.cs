@@ -20,8 +20,8 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
         // GET: api/color/25
-        [Route("api/color/{id}")]
-        public HttpResponseMessage GetColor(int id)
+        [Route("api/color")]
+        public HttpResponseMessage PostColor([FromBody]int id)
         {
             var size = ColorRepository.GetColor(id);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, size);

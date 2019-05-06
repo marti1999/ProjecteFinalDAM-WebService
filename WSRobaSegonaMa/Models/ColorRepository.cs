@@ -26,6 +26,8 @@ namespace WSRobaSegonaMa.Models
 
         public static Color GetColor(int colorId)
         {
+
+           
             Color c = dataContext.Colors.Where(x => x.Id == colorId).SingleOrDefault();
             return c;
         }

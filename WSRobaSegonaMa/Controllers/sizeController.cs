@@ -22,8 +22,8 @@ namespace WSRobaSegonaMa.Controllers
 
 
         // GET: api/size/25
-        [Route("api/size/{id}")]
-        public HttpResponseMessage GetSize(int id)
+        [Route("api/size")]
+        public HttpResponseMessage PostSize([FromBody]int id)
         {
             var size = SizeRepository.GetSize(id);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, size);
