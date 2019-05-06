@@ -48,7 +48,7 @@ namespace WSRobaSegonaMa.Models
             List<Warehouse> lw = new List<Warehouse>();
             bool first = true;
             List<Cloth> lc = null;
-            lc = dc.Clothes.Where(x => x.Size_Id == c.Size_Id && x.Color_Id == c.Color_Id && x.Classification_Id == c.Classification_Id && c.Gender_Id == x.Gender_Id).ToList();
+            lc = dc.Clothes.Where(x => x.Size_Id == c.Size_Id && x.Color_Id == c.Color_Id && x.Classification_Id == c.Classification_Id && c.Gender_Id == x.Gender_Id && x.active == true).ToList();
 
             foreach (Cloth cloth in lc)
             {
