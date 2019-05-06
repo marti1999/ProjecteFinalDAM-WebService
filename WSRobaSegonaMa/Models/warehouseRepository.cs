@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 
@@ -13,7 +14,7 @@ namespace WSRobaSegonaMa.Models
         {
             List<Warehouse> lc = dc.Warehouses.ToList();
             lc = lc.OrderBy(x => x.city).ToList();
-            
+
 
             return lc;
         }
@@ -37,30 +38,37 @@ namespace WSRobaSegonaMa.Models
             w1.name = w.name;
 
 
-           
+
             dc.SaveChanges();
             return w1;
         }
 
         public static List<Warehouse> getWarehousesByCloth(Cloth c)
         {
-            List<Warehouse> lw = null;
-
+            List<Warehouse> lw = new List<Warehouse>();
+            bool first = true;
             List<Cloth> lc = null;
             lc = dc.Clothes.Where(x => x.Size_Id == c.Size_Id && x.Color_Id == c.Color_Id && x.Classification_Id == c.Classification_Id && c.Gender_Id == x.Gender_Id).ToList();
 
             foreach (Cloth cloth in lc)
             {
-                if (!lw.Contains(cloth.Warehouse))
+                if (first)
                 {
-                    lw.Add(cloth.Warehouse);
+                    Warehouse w = dc.Warehouses.Where(x => x.Id == cloth.Warehouse_Id).FirstOrDefault();
+                    lw.Add(w);
+                    first = false;
+                }
+                else if (!lw.Contains(cloth.Warehouse))
+                {
+                    Warehouse w = dc.Warehouses.Where(x => x.Id == cloth.Warehouse_Id).FirstOrDefault();
+                    lw.Add(w);
                 }
             }
 
             if (lw != null)
             {
                 lw = lw.OrderBy(x => x.city).ToList();
-                            }
+            }
 
 
 
