@@ -39,8 +39,8 @@ namespace WSRobaSegonaMa.Controllers
         }
 
         //GET: api/administrator/admin@admin.com
-        [Route("api/administratorEmail/{email}")]
-        public HttpResponseMessage GetAdministratorByEmail(string email)
+        [Route("api/administratorEmail")]
+        public HttpResponseMessage PostAdministratorByEmail([FromBody]string email)
         {
             var admin = AdminRepository.SearchAdministratorsByEmail(email);
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, admin);

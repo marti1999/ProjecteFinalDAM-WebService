@@ -43,6 +43,21 @@ namespace WSRobaSegonaMa.Models
             } 
         }
 
+        public static bool insertClothList(List<Cloth> list)
+        {
+            try
+            {
+                dc.Clothes.AddRange(list);
+                dc.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                
+            }
+        }
+
         public static Cloth updateCloth(int id, Cloth c)
         {
             try

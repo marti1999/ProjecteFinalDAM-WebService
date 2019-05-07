@@ -47,6 +47,15 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
+        // POST: api/cloth/
+        [Route("api/cloth/range")]
+        public HttpResponseMessage PostRange([FromBody] List<Cloth> val)
+        {
+            var cloth = ClothRespository.insertClothList(val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, cloth);
+            return response;
+        }
+
         // DELETE: api/cloth/5
         [Route("api/cloth/{id?}")]
         public HttpResponseMessage Delete(int id)
