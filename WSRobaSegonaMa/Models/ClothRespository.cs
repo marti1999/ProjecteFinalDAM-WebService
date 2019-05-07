@@ -47,6 +47,13 @@ namespace WSRobaSegonaMa.Models
         {
             try
             {
+
+                foreach (Cloth item in list)
+                {
+                    item.dateCreated = DateTime.Now;
+                    //item.Id = null;
+                }
+
                 dc.Clothes.AddRange(list);
                 dc.SaveChanges();
                 return true;
