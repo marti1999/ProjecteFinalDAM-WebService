@@ -75,6 +75,14 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
+        [Route("api/donorPassword/{id?}")]
+        public HttpResponseMessage PutPassword(int id, [FromBody] Donor val)
+        {
+            var donors = DonorRepository.UpdateDonorPassword(id, val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, donors);
+            return response;
+        }
+
         // POST: api/donor
         [Route("api/donor")]
         public HttpResponseMessage Post([FromBody] Donor val)

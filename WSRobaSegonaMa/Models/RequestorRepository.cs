@@ -84,6 +84,24 @@ namespace WSRobaSegonaMa.Models
             }
         }
 
+        public static Requestor UpdateRequestorPassword(int id, Requestor c)
+        {
+            try
+            {
+                Requestor c0 = dataContext.Requestors.Where(x => x.Id == id).SingleOrDefault();
+                
+                if (c.password != null) c0.password = c.password;
+    
+
+                dataContext.SaveChanges();
+                return GetRequestor(id);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
         public static void DeleteRequestor(String id)
         {
             Requestor c;

@@ -86,6 +86,24 @@ namespace WSRobaSegonaMa.Models
             }
         }
 
+        public static Donor UpdateDonorPassword(int id, Donor c)
+        {
+            try
+            {
+                Donor c0 = dataContext.Donors.Where(x => x.Id == id).SingleOrDefault();
+
+                if (c.password != null) c0.password = c.password;
+
+
+                dataContext.SaveChanges();
+                return GetDonor(id);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+
 
         public static Donor DeleteDonor(String id)
         {
@@ -137,10 +155,10 @@ namespace WSRobaSegonaMa.Models
         public static string CanLoginBoth(Donor a)
         {
             List<Donor> lc = GetAllDonors();
-            Donor donor = lc.Where(x => x.password == a.password && x.email == a.email).FirstOrDefault();
+            Donor donor = lc.Where(x => x.password == a.password && x.email == a.email && x.active == true).FirstOrDefault();
 
             List<Requestor> lr = RequestorRepository.GetAllRequestors();
-            Requestor requestor = lr.Where(x => x.password == a.password && x.email == a.email).FirstOrDefault();
+            Requestor requestor = lr.Where(x => x.password == a.password && x.email == a.email && x.active == true).FirstOrDefault();
 
             if (donor != null || requestor != null)
             {
