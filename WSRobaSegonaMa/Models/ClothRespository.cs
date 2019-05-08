@@ -33,7 +33,7 @@ namespace WSRobaSegonaMa.Models
               
                 dc.SaveChanges();
 
-                
+                dc = new RobaSegonaMaEntities();
 
                 return c; 
             }
@@ -49,6 +49,7 @@ namespace WSRobaSegonaMa.Models
             {
                 dc.Clothes.AddRange(list);
                 dc.SaveChanges();
+                dc = new RobaSegonaMaEntities();
                 return true;
             }
             catch (Exception ex)
@@ -75,6 +76,7 @@ namespace WSRobaSegonaMa.Models
                 if (c.dateCreated != null) c2.dateCreated = c.dateCreated;
                 
                 dc.SaveChanges();
+                dc = new RobaSegonaMaEntities();
                 return c2;
 
             }
@@ -94,6 +96,7 @@ namespace WSRobaSegonaMa.Models
             {
                 dc.Clothes.Remove(c);
                 dc.SaveChanges();
+                dc = new RobaSegonaMaEntities();
             }
             return new Cloth();;
         }

@@ -18,9 +18,9 @@ namespace WSRobaSegonaMa.Models
             return lc;
         }
 
-        public static Administrator GetAdministrator(int donorID)
+        public static Administrator GetAdministrator(int adminId)
         {
-            Administrator c = dataContext.Administrators.Where(x => x.Id == donorID).SingleOrDefault();
+            Administrator c = dataContext.Administrators.Where(x => x.Id == adminId).SingleOrDefault();
             return c;
         }
 
