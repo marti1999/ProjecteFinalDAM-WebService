@@ -54,6 +54,15 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
+        // PUT: api/requestor/5
+        [Route("api/requestorPassword/{id?}")]
+        public HttpResponseMessage PutPassword(int id, [FromBody] Requestor val)
+        {
+            var requestors = RequestorRepository.UpdateRequestorPassword(id, val);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, requestors);
+            return response;
+        }
+
         // POST: api/requestor
         [Route("api/requestor")]
         public HttpResponseMessage Post([FromBody] Requestor val)
