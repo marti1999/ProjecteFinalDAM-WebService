@@ -20,6 +20,7 @@ namespace WSRobaSegonaMa.Models
 
         public static Donor GetDonor(int donorID)
         {
+          //  dataContext = new RobaSegonaMaEntities(false);
             Donor c = dataContext.Donors.Where(x => x.Id == donorID).SingleOrDefault();
             return c;
         }
@@ -46,7 +47,7 @@ namespace WSRobaSegonaMa.Models
                 }
                 dataContext.Donors.Add(c);
                 dataContext.SaveChanges();
-                dataContext = new RobaSegonaMaEntities();
+                dataContext = new RobaSegonaMaEntities(false);
                 return GetDonor(c.Id);
             }
             catch (Exception e)
@@ -79,7 +80,7 @@ namespace WSRobaSegonaMa.Models
 
 
                 dataContext.SaveChanges();
-                dataContext = new RobaSegonaMaEntities();
+                dataContext = new RobaSegonaMaEntities(false);
                 return GetDonor(id);
             }
             catch (Exception e)
@@ -124,7 +125,7 @@ namespace WSRobaSegonaMa.Models
             {
                 dataContext.Donors.Remove(c);
                 dataContext.SaveChanges();
-                dataContext = new RobaSegonaMaEntities();
+                dataContext = new RobaSegonaMaEntities(false);
             }
 
             return new Donor();
