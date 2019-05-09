@@ -46,6 +46,7 @@ namespace WSRobaSegonaMa.Models
                 }
                 dataContext.Donors.Add(c);
                 dataContext.SaveChanges();
+                dataContext = new RobaSegonaMaEntities();
                 return GetDonor(c.Id);
             }
             catch (Exception e)
@@ -78,6 +79,7 @@ namespace WSRobaSegonaMa.Models
 
 
                 dataContext.SaveChanges();
+                dataContext = new RobaSegonaMaEntities();
                 return GetDonor(id);
             }
             catch (Exception e)
@@ -122,6 +124,7 @@ namespace WSRobaSegonaMa.Models
             {
                 dataContext.Donors.Remove(c);
                 dataContext.SaveChanges();
+                dataContext = new RobaSegonaMaEntities();
             }
 
             return new Donor();
