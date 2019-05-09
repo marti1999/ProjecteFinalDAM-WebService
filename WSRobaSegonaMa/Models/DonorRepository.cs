@@ -161,7 +161,8 @@ namespace WSRobaSegonaMa.Models
             Donor donor = lc.Where(x => x.password == a.password && x.email == a.email && x.active == true).FirstOrDefault();
 
             List<Requestor> lr = RequestorRepository.GetAllRequestors();
-            Requestor requestor = lr.Where(x => x.password == a.password && x.email == a.email && x.active == true).FirstOrDefault();
+           // Requestor requestor = lr.Where(x => x.password == a.password && x.email == a.email && x.active == true && x.Status.status1.ToLower().Equals("activated")).FirstOrDefault();
+            Requestor requestor = lr.Where(x => x.password == a.password && x.email == a.email && x.active == true && x.Status_Id == 2).FirstOrDefault();
 
             if (donor != null || requestor != null)
             {
