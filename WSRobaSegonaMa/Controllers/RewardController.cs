@@ -40,9 +40,10 @@ namespace WSRobaSegonaMa.Controllers
 
         //PUT: api/reward/availableDonor/6
         [Route("api/reward/availableDonor/{donorId?}")]
-        public HttpResponseMessage PutClaimReward(int donorId)
+        public HttpResponseMessage PutGetRewardDonor(int donorId)
         {
             var reward = RewardRepository.getAvailableRewardsDonor(donorId);
+       //     reward.Add(new Reward());
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, reward);
             return response;
         }
