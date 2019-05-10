@@ -11,6 +11,8 @@ namespace WSRobaSegonaMa.Models
 
         private static RobaSegonaMaEntities dc = new RobaSegonaMaEntities();
 
+        
+
         public static List<Announcement> GetAllAnnouncements()
         {
             List<Announcement> lc = dc.Announcements.ToList();
@@ -21,6 +23,14 @@ namespace WSRobaSegonaMa.Models
         {
             List<Announcement> lc = dc.Announcements.Where(x => ((x.recipient.ToLower().Contains(userType.ToLower()) || (x.recipient.ToLower().Contains("everyone"))) && x.language.Contains("ngl"))).ToList();
             return lc;
+        }
+
+        public static int getNewAnnouncementNumberByUserType(string userType)
+        {
+            List<Announcement> lc = dc.Announcements.Where(x => ((x.recipient.ToLower().Contains(userType.ToLower()) || (x.recipient.ToLower().Contains("everyone"))) && x.language.Contains("ngl"))).ToList();
+
+            return lc.Count();
+
         }
 
         public static Announcement getAnnouncement(int id)
