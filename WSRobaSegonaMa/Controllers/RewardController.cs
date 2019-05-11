@@ -43,7 +43,11 @@ namespace WSRobaSegonaMa.Controllers
         public HttpResponseMessage PutGetRewardDonor(int donorId)
         {
             var reward = RewardRepository.getAvailableRewardsDonor(donorId);
-       //     reward.Add(new Reward());
+            //     reward.Add(new Reward());
+            foreach (Reward item in reward)
+            {
+                item.Donors = null;
+            }
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, reward);
             return response;
         }

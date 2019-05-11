@@ -29,6 +29,14 @@ namespace WSRobaSegonaMa.Controllers
             return response;
         }
 
+        [Route("api/announcementsUserTypeNumber/{userType?}")]
+        public HttpResponseMessage GetannouncementsUserTypeNumber(string userType)
+        {
+            var announcements = AnnouncementRespository.getAllAnnouncementsNumByUserType(userType);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, announcements);
+            return response;
+        }
+
         //GET: api/announcement/4
         [Route("api/announcement/{id?}")]
         public HttpResponseMessage getAnnouncementById(int id)
