@@ -13,14 +13,31 @@ namespace WSRobaSegonaMa.Models
 
         public static List<Announcement> GetAllAnnouncements()
         {
-            List<Announcement> lc = dc.Announcements.ToList();
-            return lc;
+
+            try {
+                List<Announcement> lc = dc.Announcements.ToList();
+                return lc;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+            
         }
 
         public static List<Announcement> getAllAnnouncementsByUserType(string userType)
         {
-            List<Announcement> lc = dc.Announcements.Where(x => ((x.recipient.ToLower().Contains(userType.ToLower()) || (x.recipient.ToLower().Contains("everyone"))) && x.language.Contains("ngl"))).ToList();
-            return lc;
+            try
+            {
+                List<Announcement> lc = dc.Announcements.Where(x => ((x.recipient.ToLower().Contains(userType.ToLower()) || (x.recipient.ToLower().Contains("everyone"))) && x.language.Contains("ngl"))).ToList();
+                return lc;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            
         }
 
         public static int getAllAnnouncementsNumByUserType(string userType)
