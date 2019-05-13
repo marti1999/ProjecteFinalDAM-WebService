@@ -32,6 +32,8 @@ namespace WSRobaSegonaMa.Models
         {
             dataContext = new RobaSegonaMaEntities(false);
             Requestor c = dataContext.Requestors.Where(x => x.Id == requestorID).SingleOrDefault();
+            c.MaxClaim = dataContext.MaxClaims.Where(x => x.Id == c.MaxClaims_Id).FirstOrDefault();
+            
             return c;
         }
 
