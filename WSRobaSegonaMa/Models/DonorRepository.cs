@@ -20,7 +20,8 @@ namespace WSRobaSegonaMa.Models
 
         public static Donor GetDonor(int donorID)
         {
-          //  dataContext = new RobaSegonaMaEntities(false);
+            //  dataContext = new RobaSegonaMaEntities(false);
+            dataContext = new RobaSegonaMaEntities(false);
             Donor c = dataContext.Donors.Where(x => x.Id == donorID).SingleOrDefault();
             return c;
         }

@@ -30,6 +30,7 @@ namespace WSRobaSegonaMa.Models
 
         public static Requestor GetRequestor(int requestorID)
         {
+            dataContext = new RobaSegonaMaEntities(false);
             Requestor c = dataContext.Requestors.Where(x => x.Id == requestorID).SingleOrDefault();
             return c;
         }
