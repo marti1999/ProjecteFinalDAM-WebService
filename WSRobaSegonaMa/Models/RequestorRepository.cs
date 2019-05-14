@@ -60,8 +60,10 @@ namespace WSRobaSegonaMa.Models
 
         public static Requestor UpdateRequestor(int id, Requestor c)
         {
+
             try
             {
+                dataContext = new RobaSegonaMaEntities();
                 Requestor c0 = dataContext.Requestors.Where(x => x.Id == id).SingleOrDefault();
                 if (c.name != null) c0.name = c.name;
                 if (c.lastName != null) c0.lastName = c.lastName;
@@ -91,6 +93,7 @@ namespace WSRobaSegonaMa.Models
         {
             try
             {
+                dataContext = new RobaSegonaMaEntities();
                 Requestor c0 = dataContext.Requestors.Where(x => x.Id == id).SingleOrDefault();
                 
                 if (c.password != null) c0.password = c.password;
@@ -127,6 +130,7 @@ namespace WSRobaSegonaMa.Models
 
         public static bool CanLogin(Requestor a)
         {
+            dataContext = new RobaSegonaMaEntities();
             List<Requestor> lc = GetAllRequestors();
 
             Requestor requestor = lc.Where(x => x.password == a.password && x.email == a.email).FirstOrDefault();
