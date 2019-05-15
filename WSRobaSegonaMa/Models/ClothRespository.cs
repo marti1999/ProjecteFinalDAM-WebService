@@ -14,12 +14,16 @@ namespace WSRobaSegonaMa.Models
 
         public static List<Cloth> GetAllClothes()
         {
+            RobaSegonaMaEntities dc = new RobaSegonaMaEntities();
+
             List<Cloth> lc = dc.Clothes.ToList();
             return lc;
         }
 
         public static Cloth getCloth(int id)
         {
+            RobaSegonaMaEntities dc = new RobaSegonaMaEntities();
+
             Cloth c = dc.Clothes.Where(x => x.Id == id).FirstOrDefault();
             return c;
         }
@@ -83,7 +87,7 @@ namespace WSRobaSegonaMa.Models
                 if (c.dateCreated != null) c2.dateCreated = c.dateCreated;
                 
                 dc.SaveChanges();
-                dc = new RobaSegonaMaEntities();
+               
                 return c2;
 
             }
@@ -92,6 +96,7 @@ namespace WSRobaSegonaMa.Models
 
                 return null;
             }
+            dc = new RobaSegonaMaEntities();
         }
 
         public static Cloth deleteCloth(int id)

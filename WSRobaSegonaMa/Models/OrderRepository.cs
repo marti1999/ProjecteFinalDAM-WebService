@@ -10,7 +10,7 @@ namespace WSRobaSegonaMa.Models
         private static RobaSegonaMaEntities dataContext = new RobaSegonaMaEntities();
         public static Order insertOrder(Order o)
         {
-
+            dataContext = new RobaSegonaMaEntities();
             try
             {
             
@@ -26,11 +26,6 @@ namespace WSRobaSegonaMa.Models
 
                 dataContext.SaveChanges();
 
-
-
-
-
-
                 return o;
 
             }
@@ -39,6 +34,7 @@ namespace WSRobaSegonaMa.Models
                 return null;
 
             }
+            dataContext = new RobaSegonaMaEntities();
         }
     }
 }
