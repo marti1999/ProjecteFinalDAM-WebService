@@ -117,9 +117,16 @@ namespace WSRobaSegonaMa.Models
 
         public static void SetAdminLang(int id, string lang)
         {
-            Administrator a = GetAllAdministrators().Where(x => x.Id.Equals(id)).FirstOrDefault();
-            a.Language_Id = Utils.getIdLang(lang);
-            dataContext.SaveChanges();
+            try
+            {
+                Administrator a = GetAllAdministrators().Where(x => x.Id.Equals(id)).FirstOrDefault();
+                a.Language_Id = Utils.getIdLang(lang);
+                dataContext.SaveChanges();
+            }
+            catch ( Exception ex)
+            {
+            }
+            
         }
 
 
