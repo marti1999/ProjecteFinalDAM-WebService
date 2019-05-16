@@ -81,8 +81,9 @@ namespace WSRobaSegonaMa.Models
 
 
                 dataContext.SaveChanges();
+                Donor newDonor = GetDonor(id);
                 dataContext = new RobaSegonaMaEntities(false);
-                return GetDonor(id);
+                return newDonor;
             }
             catch (Exception e)
             {
@@ -159,6 +160,7 @@ namespace WSRobaSegonaMa.Models
 
         public static string CanLoginBoth(Donor a)
         {
+            dataContext = new RobaSegonaMaEntities(false);
             List<Donor> lc = GetAllDonors();
             Donor donor = lc.Where(x => x.password == a.password && x.email == a.email && x.active == true).FirstOrDefault();
 
